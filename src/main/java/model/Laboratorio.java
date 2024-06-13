@@ -14,7 +14,7 @@ public class Laboratorio {
         this.capacidade = capacidade;
     }
 
-    public int id() {
+    public int getId() {
         return id;
     }
 
@@ -22,7 +22,7 @@ public class Laboratorio {
         this.id = id;
     }
 
-    public String descricao() {
+    public String getDescricao() {
         return descricao;
     }
 
@@ -30,7 +30,7 @@ public class Laboratorio {
         this.descricao = descricao;
     }
 
-    public int capacidade() {
+    public int getCapacidade() {
         return capacidade;
     }
 
@@ -38,7 +38,7 @@ public class Laboratorio {
         this.capacidade = capacidade;
     }
 
-    public boolean status() {
+    public boolean isStatus() {
         return status;
     }
 

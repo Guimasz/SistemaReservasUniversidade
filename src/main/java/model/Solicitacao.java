@@ -20,7 +20,7 @@ public class Solicitacao {
         this.laboratorio = laboratorio;
     }
 
-    public int id() {
+    public int getId() {
         return id;
     }
 
@@ -28,7 +28,7 @@ public class Solicitacao {
         this.id = id;
     }
 
-    public Laboratorio laboratorio() {
+    public Laboratorio getLaboratorio() {
         return laboratorio;
     }
 
@@ -36,7 +36,7 @@ public class Solicitacao {
         this.laboratorio = laboratorio;
     }
 
-    public Professor professor() {
+    public Professor getProfessor() {
         return professor;
     }
 
@@ -44,7 +44,7 @@ public class Solicitacao {
         this.professor = professor;
     }
 
-    public Turma turma() {
+    public Turma getTurma() {
         return turma;
     }
 
@@ -52,7 +52,7 @@ public class Solicitacao {
         this.turma = turma;
     }
 
-    public LocalDateTime dataHora() {
+    public LocalDateTime getDataHora() {
         return dataHora;
     }
 
@@ -60,7 +60,7 @@ public class Solicitacao {
         this.dataHora = dataHora;
     }
 
-    public Duration tempo() {
+    public Duration getTempo() {
         return tempo;
     }
 

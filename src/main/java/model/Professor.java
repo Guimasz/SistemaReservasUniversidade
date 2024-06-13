@@ -8,10 +8,14 @@ public class Professor {
     private boolean status;
     private Departamento departamento;
     private List<Disciplina> pdisciplinas;
-    public Professor() {}
-    public Professor(long id, String nome, boolean status, Departamento departamento) {}
 
-    public long id() {
+    public Professor() {
+    }
+
+    public Professor(long id, String nome, boolean status, Departamento departamento) {
+    }
+
+    public long getId() {
         return id;
     }
 
@@ -19,7 +23,7 @@ public class Professor {
         this.id = id;
     }
 
-    public String nome() {
+    public String getNome() {
         return nome;
     }
 
@@ -27,7 +31,7 @@ public class Professor {
         this.nome = nome;
     }
 
-    public boolean status() {
+    public boolean isStatus() {
         return status;
     }
 
@@ -35,7 +39,7 @@ public class Professor {
         this.status = status;
     }
 
-    public Departamento departamento() {
+    public Departamento getDepartamento() {
         return departamento;
     }
 
@@ -43,7 +47,7 @@ public class Professor {
         this.departamento = departamento;
     }
 
-    public List<Disciplina> pdisciplinas() {
+    public List<Disciplina> getPdisciplinas() {
         return pdisciplinas;
     }
 

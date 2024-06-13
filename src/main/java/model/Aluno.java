@@ -16,8 +16,7 @@ public class Aluno {
         this.status = status;
     }
 
-
-    public long id() {
+    public long getId() {
         return id;
     }
 
@@ -25,7 +24,7 @@ public class Aluno {
         this.id = id;
     }
 
-    public String nome() {
+    public String getNome() {
         return nome;
     }
 
@@ -33,7 +32,7 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public String matricula() {
+    public String getMatricula() {
         return matricula;
     }
 
@@ -41,7 +40,7 @@ public class Aluno {
         this.matricula = matricula;
     }
 
-    public Turma turma() {
+    public Turma getTurma() {
         return turma;
     }
 
@@ -49,7 +48,7 @@ public class Aluno {
         this.turma = turma;
     }
 
-    public boolean status() {
+    public boolean isStatus() {
         return status;
     }
 

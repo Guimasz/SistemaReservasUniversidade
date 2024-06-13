@@ -9,7 +9,7 @@ public class Turma {
         this.disciplina = disciplina;
     }
 
-    public int id() {
+    public int getId() {
         return id;
     }
 
@@ -17,7 +17,7 @@ public class Turma {
         this.id = id;
     }
 
-    public Disciplina disciplina() {
+    public Disciplina getDisciplina() {
         return disciplina;
     }
 

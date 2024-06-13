@@ -24,7 +24,7 @@ public class Reserva {
         this.situacaoReserva = situacaoReserva;
     }
 
-    public int id() {
+    public int getId() {
         return id;
     }
 
@@ -32,7 +32,7 @@ public class Reserva {
         this.id = id;
     }
 
-    public Solicitacao solicitacao() {
+    public Solicitacao getSolicitacao() {
         return solicitacao;
     }
 
@@ -40,15 +40,7 @@ public class Reserva {
         this.solicitacao = solicitacao;
     }
 
-    public LocalDateTime diaHoraReserva() {
-        return diaHoraReserva;
-    }
-
-    public void setDiaHoraReserva(LocalDateTime diaHoraReserva) {
-        this.diaHoraReserva = diaHoraReserva;
-    }
-
-    public Boolean situacaoReserva() {
+    public Boolean getSituacaoReserva() {
         return situacaoReserva;
     }
 
@@ -56,7 +48,15 @@ public class Reserva {
         this.situacaoReserva = situacaoReserva;
     }
 
-    public Duration duracao() {
+    public LocalDateTime getDiaHoraReserva() {
+        return diaHoraReserva;
+    }
+
+    public void setDiaHoraReserva(LocalDateTime diaHoraReserva) {
+        this.diaHoraReserva = diaHoraReserva;
+    }
+
+    public Duration getDuracao() {
         return duracao;
     }
 
@@ -64,7 +64,7 @@ public class Reserva {
         this.duracao = duracao;
     }
 
-    public String nomeProf() {
+    public String getNomeProf() {
         return nomeProf;
     }
 
@@ -72,7 +72,7 @@ public class Reserva {
         this.nomeProf = nomeProf;
     }
 
-    public String nomeDis() {
+    public String getNomeDis() {
         return nomeDis;
     }
 
@@ -80,7 +80,7 @@ public class Reserva {
         this.nomeDis = nomeDis;
     }
 
-    public LocalDateTime dataLiberacao() {
+    public LocalDateTime getDataLiberacao() {
         return dataLiberacao;
     }
 

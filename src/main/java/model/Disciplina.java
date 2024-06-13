@@ -14,7 +14,7 @@ public class Disciplina {
         this.status = status;
     }
 
-    public String sigla() {
+    public String getSigla() {
         return sigla;
     }
 
@@ -22,7 +22,15 @@ public class Disciplina {
         this.sigla = sigla;
     }
 
-    public long id() {
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public long getId() {
         return id;
     }
 
@@ -30,20 +38,12 @@ public class Disciplina {
         this.id = id;
     }
 
-    public boolean status() {
+    public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public String descricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     @Override

@@ -6,9 +6,14 @@ public class Departamento {
     private String descricao;
     private boolean status;
 
+    public Departamento(long id, String sigla, String descricao, boolean status) {
+        this.id = id;
+        this.sigla = sigla;
+        this.descricao = descricao;
+        this.status = status;
+    }
 
-
-    public long id() {
+    public long getId() {
         return id;
     }
 
@@ -16,7 +21,7 @@ public class Departamento {
         this.id = id;
     }
 
-    public String sigla() {
+    public String getSigla() {
         return sigla;
     }
 
@@ -24,7 +29,7 @@ public class Departamento {
         this.sigla = sigla;
     }
 
-    public String descricao() {
+    public String getDescricao() {
         return descricao;
     }
 
@@ -32,18 +37,11 @@ public class Departamento {
         this.descricao = descricao;
     }
 
-    public boolean status() {
+    public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public Departamento(long id, String sigla, String descricao, boolean status) {
-        this.id = id;
-        this.sigla = sigla;
-        this.descricao = descricao;
         this.status = status;
     }
 
