@@ -1,4 +1,4 @@
-package dao;
+package Dao;
 
 import config.ConexaoPostgreSQL;
 import model.Disciplina;
@@ -13,7 +13,7 @@ public class TurmaDao {
 
     public ArrayList<Turma> findAll() {
         String sql = "SELECT t.id, d.id AS disciplina_id, d.sigla, d.descricao, d.status FROM turma t "
-                + "INNER JOIN disciplina d ON t.disciplina_id = d.id";
+                + "INNER JOIN disciplina d ON t.disciplina = d.id";
         ArrayList<Turma> turmas = new ArrayList<>();
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -41,7 +41,7 @@ public class TurmaDao {
 
     public Turma findTurmaById(int id) {
         String sql = "SELECT t.id, d.id AS disciplina_id, d.sigla, d.descricao, d.status FROM turma t "
-                + "INNER JOIN disciplina d ON t.disciplina_id = d.id "
+                + "INNER JOIN disciplina d ON t.disciplina = d.id "
                 + "WHERE t.id = ?";
         Turma turma = null;
 
@@ -71,7 +71,7 @@ public class TurmaDao {
 
     // Método para criar uma nova turma
     public void criarTurma(Turma turma) {
-        String sql = "INSERT INTO turma (disciplina_id) VALUES (?)";
+        String sql = "INSERT INTO turma (disciplina) VALUES (?)";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -95,7 +95,7 @@ public class TurmaDao {
 
     // Método para atualizar uma turma existente
     public void atualizarTurma(Turma turma) {
-        String sql = "UPDATE turma SET disciplina_id = ? WHERE id = ?";
+        String sql = "UPDATE turma SET disciplina= ? WHERE id = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {

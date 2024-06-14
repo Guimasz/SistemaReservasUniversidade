@@ -1,7 +1,8 @@
-package DAO;
+package Dao;
 
 import config.ConexaoPostgreSQL;
 import model.Aluno;
+import model.Disciplina;
 import model.Turma;
 
 import java.sql.*;
@@ -10,9 +11,9 @@ import java.util.ArrayList;
 public class AlunoDao {
 
     public ArrayList<Aluno> findAll() {
-        String sql = "SELECT a.id, a.nome, a.matricula, a.status, t.id AS turma_id"
-                + "FROM aluno a "
-                + "INNER JOIN turma t ON a.turma_id = t.id";
+        String sql = "SELECT a.matricula, a.nome, a.status, t.id AS turma_id, t.disciplina AS disciplina_id"
+                + " FROM aluno a "
+                + " INNER JOIN turma t ON a.turma = t.id";
         ArrayList<Aluno> alunos = new ArrayList<>();
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -21,43 +22,56 @@ public class AlunoDao {
 
             while (rs.next()) {
                 Aluno aluno = new Aluno();
-                aluno.setId(rs.getInt("id"));
+                aluno.setMatricula(rs.getInt("matricula"));
                 aluno.setNome(rs.getString("nome"));
-                aluno.setMatricula(rs.getString("matricula"));
                 aluno.setStatus(rs.getBoolean("status"));
                 Turma turma = new Turma();
                 turma.setId(rs.getInt("turma_id"));
+
+                Disciplina disciplina = new Disciplina();
+                disciplina.setId(rs.getInt("disciplina_id"));
+                disciplina.setSigla(rs.getString("disciplina_sigla"));
+                disciplina.setDescricao(rs.getString("disciplina_descricao"));
+                disciplina.setStatus(rs.getBoolean("disciplina_status"));
+                turma.setDisciplina(disciplina);
+
                 aluno.setTurma(turma);
                 alunos.add(aluno);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
         return alunos;
     }
-    public Aluno findAlunobyId(Integer id) {
-        String sql = "SELECT a.id, a.nome, a.matricula, a.status, t.id AS turma_id, t.nome AS turma_nome "
-                + "FROM aluno a "
-                + "INNER JOIN turma t ON a.turma_id = t.id "
-                + "WHERE a.id = ?";
+
+
+    public Aluno findAlunobyId(Integer matricula) {
+        String sql = "SELECT a.matricula, a.nome, a.status, t.id AS turma_id, t.disciplina AS disciplina_id "
+                + " FROM aluno a "
+                + " INNER JOIN turma t ON a.turma = t.id "
+                + " WHERE a.matricula = ?";
         Aluno aluno = null;
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setLong(1, id);
+            stmt.setInt(1, matricula);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     aluno = new Aluno();
-                    aluno.setId(rs.getInt("id"));
+                    aluno.setMatricula(rs.getInt("matricula"));
                     aluno.setNome(rs.getString("nome"));
-                    aluno.setMatricula(rs.getString("matricula"));
                     aluno.setStatus(rs.getBoolean("status"));
                     Turma turma = new Turma();
                     turma.setId(rs.getInt("turma_id"));
+                    Disciplina disciplina = new Disciplina();
+                    disciplina.setId(rs.getInt("disciplina_id"));
+                    disciplina.setSigla(rs.getString("disciplina_sigla"));
+                    disciplina.setDescricao(rs.getString("disciplina_descricao"));
+                    disciplina.setStatus(rs.getBoolean("disciplina_status"));
+                    turma.setDisciplina(disciplina);
                     aluno.setTurma(turma);
                 }
             }
@@ -69,13 +83,13 @@ public class AlunoDao {
     }
 
     public void criarAluno(Aluno aluno) {
-        String sql = "INSERT INTO aluno (nome, matricula, turma, status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO aluno (matricula, nome, turma, status) VALUES (?, ?, ?, ?)";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setString(1, aluno.getNome());
-            stmt.setString(2, aluno.getMatricula());
+            stmt.setInt(1, aluno.getMatricula());
+            stmt.setString(2, aluno.getNome());
             stmt.setInt(3, aluno.getTurma().getId());
             stmt.setBoolean(4, aluno.isStatus());
 
@@ -87,17 +101,15 @@ public class AlunoDao {
     }
 
     public void atualizarAluno(Aluno aluno) {
-        String sql = "UPDATE aluno SET nome = ?, matricula = ?, turma = ?, status = ? WHERE id = ?";
-
+        String sql = "UPDATE aluno SET nome = ?, turma = ?, status = ? WHERE matricula = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, aluno.getNome());
-            stmt.setString(2, aluno.getMatricula());
-            stmt.setInt(3, aluno.getTurma().getId());
-            stmt.setBoolean(4, aluno.isStatus());
-            stmt.setLong(5, aluno.getId());
+            stmt.setInt(2, aluno.getTurma().getId());
+            stmt.setBoolean(3, aluno.isStatus());
+            stmt.setInt(4, aluno.getMatricula());
 
             stmt.executeUpdate();
 
@@ -107,13 +119,13 @@ public class AlunoDao {
 
     }
 
-    public void deletarAluno(Integer id) {
-        String sql = "DELETE FROM aluno WHERE id = ?";
+    public void deletarAluno(Integer matricula) {
+        String sql = "DELETE FROM aluno WHERE matricula = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setInt(1, id);
+            stmt.setInt(1, matricula);
 
             stmt.executeUpdate();
 
@@ -121,5 +133,4 @@ public class AlunoDao {
             e.printStackTrace();
         }
     }
-
 }

@@ -2,29 +2,26 @@ package model;
 
 public class Aluno {
 
-    private Integer id;
+    private Integer matricula;
     private String nome;
-    private String matricula;
     private Turma turma;
     private Boolean status;
 
-
-    public Aluno(Integer id, String nome, String matricula, Boolean status) {
-        this.id = id;
-        this.nome = nome;
+    public Aluno(Integer matricula, String nome, Boolean status) {
         this.matricula = matricula;
+        this.nome = nome;
         this.status = status;
     }
 
     public Aluno() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getMatricula() {
+        return matricula;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMatricula(Integer matricula) {
+        this.matricula = matricula;
     }
 
     public String getNome() {
@@ -33,14 +30,6 @@ public class Aluno {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public Turma getTurma() {
@@ -62,9 +51,8 @@ public class Aluno {
     @Override
     public String toString() {
         return "Aluno{" +
-                "id=" + id +
+                "matricula=" + matricula +
                 ", nome='" + nome + '\'' +
-                ", matricula='" + matricula + '\'' +
                 ", turma=" + turma +
                 ", status=" + status +
                 '}';
