@@ -13,6 +13,8 @@ public class Disciplina {
         this.id = id;
         this.status = status;
     }
+    public Disciplina() {
+    }
 
     public String getSigla() {
         return sigla;

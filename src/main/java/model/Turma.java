@@ -8,6 +8,8 @@ public class Turma {
         this.id = id;
         this.disciplina = disciplina;
     }
+    public Turma() {
+    }
 
     public int getId() {
         return id;

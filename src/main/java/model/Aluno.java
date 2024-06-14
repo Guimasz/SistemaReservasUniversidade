@@ -16,6 +16,9 @@ public class Aluno {
         this.status = status;
     }
 
+    public Aluno() {
+    }
+
     public long getId() {
         return id;
     }

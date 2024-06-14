@@ -14,6 +14,9 @@ public class Laboratorio {
         this.capacidade = capacidade;
     }
 
+    public Laboratorio() {
+    }
+
     public int getId() {
         return id;
     }

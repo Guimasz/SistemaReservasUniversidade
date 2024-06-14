@@ -6,13 +6,13 @@ public class Professor {
     private long id;
     private String nome;
     private boolean status;
-    private Departamento departamento;
+
     private List<Disciplina> pdisciplinas;
 
     public Professor() {
     }
 
-    public Professor(long id, String nome, boolean status, Departamento departamento) {
+    public Professor(long id, String nome, boolean status) {
     }
 
     public long getId() {
@@ -39,14 +39,6 @@ public class Professor {
         this.status = status;
     }
 
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-    }
-
     public List<Disciplina> getPdisciplinas() {
         return pdisciplinas;
     }
@@ -61,7 +53,6 @@ public class Professor {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", status=" + status +
-                ", departamento=" + departamento +
                 ", pdisciplinas=" + pdisciplinas +
                 '}';
     }
