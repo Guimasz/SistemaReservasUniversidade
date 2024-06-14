@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import config.ConexaoPostgreSQL;
 import model.Disciplina;
