@@ -24,7 +24,7 @@ public class Reserva {
         this.aprovada = aprovada;
     }
 
-    public Integer id() {
+    public Integer getId() {
         return id;
     }
 
@@ -32,7 +32,7 @@ public class Reserva {
         this.id = id;
     }
 
-    public Laboratorio laboratorio() {
+    public Laboratorio getLaboratorio() {
         return laboratorio;
     }
 
@@ -40,7 +40,7 @@ public class Reserva {
         this.laboratorio = laboratorio;
     }
 
-    public Professor professor() {
+    public Professor getProfessor() {
         return professor;
     }
 
@@ -48,7 +48,7 @@ public class Reserva {
         this.professor = professor;
     }
 
-    public Turma turma() {
+    public Turma getTurma() {
         return turma;
     }
 
@@ -56,7 +56,7 @@ public class Reserva {
         this.turma = turma;
     }
 
-    public Duration tempo() {
+    public Duration getTempo() {
         return tempo;
     }
 
@@ -64,7 +64,7 @@ public class Reserva {
         this.tempo = tempo;
     }
 
-    public LocalDateTime dataHora() {
+    public LocalDateTime getDataHora() {
         return dataHora;
     }
 
@@ -72,7 +72,7 @@ public class Reserva {
         this.dataHora = dataHora;
     }
 
-    public Boolean aprovada() {
+    public Boolean isAprovada() {
         return aprovada;
     }
 
