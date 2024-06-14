@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Reserva {
-    private int id;
+    private Integer id;
     private Solicitacao solicitacao;
     private Boolean situacaoReserva;
     private LocalDateTime diaHoraReserva;
@@ -13,7 +13,7 @@ public class Reserva {
     private String nomeDis;
     private LocalDateTime dataLiberacao;
 
-    public Reserva(int id, Solicitacao solicitacao, LocalDateTime diaHoraReserva, Duration duracao, String nomeDis, LocalDateTime dataLiberacao, String nomeProf, Boolean situacaoReserva) {
+    public Reserva(Integer id, Solicitacao solicitacao, LocalDateTime diaHoraReserva, Duration duracao, String nomeDis, LocalDateTime dataLiberacao, String nomeProf, Boolean situacaoReserva) {
         this.id = id;
         this.solicitacao = solicitacao;
         this.diaHoraReserva = diaHoraReserva;
@@ -24,11 +24,11 @@ public class Reserva {
         this.situacaoReserva = situacaoReserva;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

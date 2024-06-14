@@ -2,14 +2,14 @@ package model;
 
 public class Aluno {
 
-    private long id;
+    private Integer id;
     private String nome;
     private String matricula;
     private Turma turma;
-    private boolean status;
+    private Boolean status;
 
 
-    public Aluno(long id, String nome, String matricula, boolean status) {
+    public Aluno(Integer id, String nome, String matricula, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
@@ -19,11 +19,11 @@ public class Aluno {
     public Aluno() {
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -51,11 +51,11 @@ public class Aluno {
         this.turma = turma;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

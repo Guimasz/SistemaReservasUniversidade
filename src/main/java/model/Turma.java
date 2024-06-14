@@ -1,7 +1,7 @@
 package model;
 
 public class Turma {
-    private int id;
+    private Integer id;
     private Disciplina disciplina;
 
     public Turma(int id, Disciplina disciplina) {
@@ -11,11 +11,11 @@ public class Turma {
     public Turma() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

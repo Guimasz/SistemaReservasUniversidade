@@ -4,10 +4,10 @@ public class Disciplina {
 
     private String sigla;
     private String descricao;
-    private long id;
-    private boolean status;
+    private Integer id;
+    private Boolean status;
 
-    public Disciplina(String sigla, String descricao, long id, boolean status) {
+    public Disciplina(String sigla, String descricao, Integer id, Boolean status) {
         this.sigla = sigla;
         this.descricao = descricao;
         this.id = id;
@@ -32,19 +32,19 @@ public class Disciplina {
         this.descricao = descricao;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

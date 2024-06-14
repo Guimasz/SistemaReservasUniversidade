@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import config.ConexaoPostgreSQL;
 import model.Disciplina;
@@ -18,7 +18,7 @@ public class DisciplinaDao {
 
             while (rs.next()) {
                 Disciplina disciplina = new Disciplina();
-                disciplina.setId(rs.getLong("id"));
+                disciplina.setId(rs.getInt("id"));
                 disciplina.setSigla(rs.getString("sigla"));
                 disciplina.setDescricao(rs.getString("descricao"));
                 disciplina.setStatus(rs.getBoolean("status"));
@@ -31,19 +31,19 @@ public class DisciplinaDao {
         return disciplinas;
     }
 
-    public Disciplina findDisciplinaById(Long id) {
+    public Disciplina findDisciplinaById(Integer id) {
         String sql = "SELECT * FROM disciplina WHERE id = ?";
         Disciplina disciplina = null;
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setLong(1, id);
+            stmt.setInt(1, id);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     disciplina = new Disciplina();
-                    disciplina.setId(rs.getLong("id"));
+                    disciplina.setId(rs.getInt("id"));
                     disciplina.setSigla(rs.getString("sigla"));
                     disciplina.setDescricao(rs.getString("descricao"));
                     disciplina.setStatus(rs.getBoolean("status"));
@@ -82,7 +82,7 @@ public class DisciplinaDao {
             stmt.setString(1, disciplina.getSigla());
             stmt.setString(2, disciplina.getDescricao());
             stmt.setBoolean(3, disciplina.isStatus());
-            stmt.setLong(4, disciplina.getId());
+            stmt.setInt(4, disciplina.getId());
 
             stmt.executeUpdate();
 
@@ -91,13 +91,13 @@ public class DisciplinaDao {
         }
     }
 
-    public void deletarDisciplina(Long id) {
+    public void deletarDisciplina(Integer id) {
         String sql = "DELETE FROM disciplina WHERE id = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setLong(1, id);
+            stmt.setInt(1, id);
 
             stmt.executeUpdate();
 

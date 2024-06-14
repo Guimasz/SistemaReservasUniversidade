@@ -10,7 +10,7 @@ public class ConexaoPostgreSQL {
     // Nome de usuário do banco de dados
     private static final String USUARIO = "postgres";
     // Senha do banco de dados
-    private static final String SENHA = "uvc7rvjtbe";
+    private static final String SENHA = "postgres";
 
     // Método para obter a conexão com o banco de dados
     public static Connection obterConexao() throws SQLException {

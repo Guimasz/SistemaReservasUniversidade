@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import config.ConexaoPostgreSQL;
 import model.Aluno;
@@ -21,7 +21,7 @@ public class AlunoDao {
 
             while (rs.next()) {
                 Aluno aluno = new Aluno();
-                aluno.setId(rs.getLong("id"));
+                aluno.setId(rs.getInt("id"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setMatricula(rs.getString("matricula"));
                 aluno.setStatus(rs.getBoolean("status"));
@@ -37,7 +37,7 @@ public class AlunoDao {
         }
         return alunos;
     }
-    public Aluno findAlunobyId(Long id) {
+    public Aluno findAlunobyId(Integer id) {
         String sql = "SELECT a.id, a.nome, a.matricula, a.status, t.id AS turma_id, t.nome AS turma_nome "
                 + "FROM aluno a "
                 + "INNER JOIN turma t ON a.turma_id = t.id "
@@ -52,7 +52,7 @@ public class AlunoDao {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     aluno = new Aluno();
-                    aluno.setId(rs.getLong("id"));
+                    aluno.setId(rs.getInt("id"));
                     aluno.setNome(rs.getString("nome"));
                     aluno.setMatricula(rs.getString("matricula"));
                     aluno.setStatus(rs.getBoolean("status"));
@@ -107,13 +107,13 @@ public class AlunoDao {
 
     }
 
-    public void deletarAluno(Long id) {
+    public void deletarAluno(Integer id) {
         String sql = "DELETE FROM aluno WHERE id = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setLong(1, id);
+            stmt.setInt(1, id);
 
             stmt.executeUpdate();
 

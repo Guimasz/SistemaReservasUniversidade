@@ -2,12 +2,12 @@ package model;
 
 public class Laboratorio {
 
-    private int id;
+    private Integer id;
     private String descricao;
-    private int capacidade;
-    private boolean status;
+    private Integer capacidade;
+    private Boolean status;
 
-    public Laboratorio(int id, String descricao, boolean status, int capacidade) {
+    public Laboratorio(Integer id, String descricao, Boolean status, Integer capacidade) {
         this.id = id;
         this.descricao = descricao;
         this.status = status;
@@ -17,11 +17,11 @@ public class Laboratorio {
     public Laboratorio() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -33,19 +33,19 @@ public class Laboratorio {
         this.descricao = descricao;
     }
 
-    public int getCapacidade() {
+    public Integer getCapacidade() {
         return capacidade;
     }
 
-    public void setCapacidade(int capacidade) {
+    public void setCapacidade(Integer capacidade) {
         this.capacidade = capacidade;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

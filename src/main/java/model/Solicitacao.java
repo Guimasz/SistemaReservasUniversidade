@@ -4,14 +4,14 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Solicitacao {
-    private int id;
+    private Integer id;
     private Laboratorio laboratorio;
     private Professor professor;
     private Turma turma;
     private LocalDateTime dataHora;
     private Duration tempo;
 
-    public Solicitacao(int id, Duration tempo, LocalDateTime dataHora, Turma turma, Professor professor, Laboratorio laboratorio) {
+    public Solicitacao(Integer id, Duration tempo, LocalDateTime dataHora, Turma turma, Professor professor, Laboratorio laboratorio) {
         this.id = id;
         this.tempo = tempo;
         this.dataHora = dataHora;
@@ -20,11 +20,11 @@ public class Solicitacao {
         this.laboratorio = laboratorio;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

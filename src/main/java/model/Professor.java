@@ -3,23 +3,23 @@ package model;
 import java.util.List;
 
 public class Professor {
-    private long id;
+    private Integer id;
     private String nome;
-    private boolean status;
+    private Boolean status;
 
     private List<Disciplina> pdisciplinas;
 
     public Professor() {
     }
 
-    public Professor(long id, String nome, boolean status) {
+    public Professor(Integer id, String nome, Boolean status, List<Disciplina> pdisciplinas) {
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -31,11 +31,11 @@ public class Professor {
         this.nome = nome;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
