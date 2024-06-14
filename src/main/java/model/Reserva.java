@@ -5,26 +5,26 @@ import java.time.LocalDateTime;
 
 public class Reserva {
     private Integer id;
-    private Solicitacao solicitacao;
-    private Boolean situacaoReserva;
-    private LocalDateTime diaHoraReserva;
-    private Duration duracao;
-    private String nomeProf;
-    private String nomeDis;
-    private LocalDateTime dataLiberacao;
+    private Laboratorio laboratorio;
+    private Professor professor;
+    private Turma turma;
+    private LocalDateTime dataHora;
+    private Duration tempo;
+    private Boolean aprovada;
 
-    public Reserva(Integer id, Solicitacao solicitacao, LocalDateTime diaHoraReserva, Duration duracao, String nomeDis, LocalDateTime dataLiberacao, String nomeProf, Boolean situacaoReserva) {
+    public Reserva() {}
+
+    public Reserva(Integer id, Laboratorio laboratorio, Professor professor, Turma turma, LocalDateTime dataHora, Duration tempo, Boolean aprovada) {
         this.id = id;
-        this.solicitacao = solicitacao;
-        this.diaHoraReserva = diaHoraReserva;
-        this.duracao = duracao;
-        this.nomeDis = nomeDis;
-        this.dataLiberacao = dataLiberacao;
-        this.nomeProf = nomeProf;
-        this.situacaoReserva = situacaoReserva;
+        this.laboratorio = laboratorio;
+        this.professor = professor;
+        this.turma = turma;
+        this.dataHora = dataHora;
+        this.tempo = tempo;
+        this.aprovada = aprovada;
     }
 
-    public Integer getId() {
+    public Integer id() {
         return id;
     }
 
@@ -32,73 +32,64 @@ public class Reserva {
         this.id = id;
     }
 
-    public Solicitacao getSolicitacao() {
-        return solicitacao;
+    public Laboratorio laboratorio() {
+        return laboratorio;
     }
 
-    public void setSolicitacao(Solicitacao solicitacao) {
-        this.solicitacao = solicitacao;
+    public void setLaboratorio(Laboratorio laboratorio) {
+        this.laboratorio = laboratorio;
     }
 
-    public Boolean getSituacaoReserva() {
-        return situacaoReserva;
+    public Professor professor() {
+        return professor;
     }
 
-    public void setSituacaoReserva(Boolean situacaoReserva) {
-        this.situacaoReserva = situacaoReserva;
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
-    public LocalDateTime getDiaHoraReserva() {
-        return diaHoraReserva;
+    public Turma turma() {
+        return turma;
     }
 
-    public void setDiaHoraReserva(LocalDateTime diaHoraReserva) {
-        this.diaHoraReserva = diaHoraReserva;
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 
-    public Duration getDuracao() {
-        return duracao;
+    public Duration tempo() {
+        return tempo;
     }
 
-    public void setDuracao(Duration duracao) {
-        this.duracao = duracao;
+    public void setTempo(Duration tempo) {
+        this.tempo = tempo;
     }
 
-    public String getNomeProf() {
-        return nomeProf;
+    public LocalDateTime dataHora() {
+        return dataHora;
     }
 
-    public void setNomeProf(String nomeProf) {
-        this.nomeProf = nomeProf;
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
     }
 
-    public String getNomeDis() {
-        return nomeDis;
+    public Boolean aprovada() {
+        return aprovada;
     }
 
-    public void setNomeDis(String nomeDis) {
-        this.nomeDis = nomeDis;
-    }
-
-    public LocalDateTime getDataLiberacao() {
-        return dataLiberacao;
-    }
-
-    public void setDataLiberacao(LocalDateTime dataLiberacao) {
-        this.dataLiberacao = dataLiberacao;
+    public void setAprovada(Boolean aprovada) {
+        this.aprovada = aprovada;
     }
 
     @Override
     public String toString() {
         return "Reserva{" +
                 "id=" + id +
-                ", solicitacao=" + solicitacao +
-                ", situacaoReserva=" + situacaoReserva +
-                ", diaHoraReserva=" + diaHoraReserva +
-                ", duracao=" + duracao +
-                ", nomeProf='" + nomeProf + '\'' +
-                ", nomeDis='" + nomeDis + '\'' +
-                ", dataLiberacao=" + dataLiberacao +
+                ", laboratorio=" + laboratorio +
+                ", professor=" + professor +
+                ", turma=" + turma +
+                ", dataHora=" + dataHora +
+                ", tempo=" + tempo +
+                ", aprovada=" + aprovada +
                 '}';
     }
 }
