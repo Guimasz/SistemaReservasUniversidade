@@ -1,18 +1,19 @@
 package model;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class Professor {
     private Integer id;
     private String nome;
     private Boolean status;
 
-    private List<Disciplina> pdisciplinas;
+    private ArrayList<Disciplina> pdisciplinas;
 
     public Professor() {
     }
 
-    public Professor(Integer id, String nome, Boolean status, List<Disciplina> pdisciplinas) {
+    public Professor(Integer id, String nome, Boolean status, ArrayList<Disciplina> pdisciplinas) {
     }
 
     public Integer getId() {
@@ -39,11 +40,11 @@ public class Professor {
         this.status = status;
     }
 
-    public List<Disciplina> getPdisciplinas() {
+    public ArrayList<Disciplina> getPdisciplinas() {
         return pdisciplinas;
     }
 
-    public void setPdisciplinas(List<Disciplina> pdisciplinas) {
+    public void setPdisciplinas(ArrayList<Disciplina> pdisciplinas) {
         this.pdisciplinas = pdisciplinas;
     }
 

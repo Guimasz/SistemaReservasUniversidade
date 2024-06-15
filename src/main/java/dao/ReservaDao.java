@@ -12,7 +12,7 @@ import java.util.List;
 public class ReservaDao {
 
     // Método para recuperar todas as reservas
-    public List<Reserva> findAll() {
+    public ArrayList<Reserva> findAll() {
         String sql = "SELECT r.id, r.data_hora, r.tempo, r.aprovada, " +
                 "l.id AS laboratorio_id, l.descricao AS laboratorio_descricao, l.capacidade AS laboratorio_capacidade, l.status AS laboratorio_status, " +
                 "p.id AS professor_id, p.nome AS professor_nome, p.status AS professor_status, " +
@@ -22,7 +22,7 @@ public class ReservaDao {
                 "INNER JOIN professor p ON r.professor_id = p.id " +
                 "INNER JOIN turma t ON r.turma_id = t.id " +
                 "INNER JOIN disciplina d ON t.disciplina_id = d.id";
-        List<Reserva> reservas = new ArrayList<>();
+        ArrayList<Reserva> reservas = new ArrayList<>();
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql);
