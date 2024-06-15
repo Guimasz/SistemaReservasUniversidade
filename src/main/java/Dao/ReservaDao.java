@@ -1,13 +1,11 @@
-package dao;
+package Dao;
 
 import config.ConexaoPostgreSQL;
 import model.*;
 
 import java.sql.*;
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ReservaDao {
 

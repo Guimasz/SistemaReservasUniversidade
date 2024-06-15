@@ -46,7 +46,7 @@ public class AlunoDao {
     }
 
 
-    public Aluno findAlunobyId(Integer matricula) {
+    public Aluno findAlunobyMatricula(Integer matricula) {
         String sql = "SELECT a.matricula, a.nome, a.status, t.id AS turma_id, t.disciplina AS disciplina_id "
                 + " FROM aluno a "
                 + " INNER JOIN turma t ON a.turma = t.id "

@@ -1,11 +1,10 @@
-package dao;
+package Dao;
 
 import config.ConexaoPostgreSQL;
 import model.Laboratorio;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LaboratorioDao {
 
