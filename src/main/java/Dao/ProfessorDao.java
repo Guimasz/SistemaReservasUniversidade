@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ProfessorDao {
 
-        // Método para recuperar todos os professores
+
         public ArrayList<Professor> findAll() {
             String sql = "SELECT * FROM professor";
             ArrayList<Professor> professores = new ArrayList<>();
@@ -33,7 +33,7 @@ public class ProfessorDao {
             return professores;
         }
 
-        // Método para recuperar um professor pelo ID
+
         public Professor findProfessorById(int id) {
             String sql = "SELECT * FROM professor WHERE id = ?";
             Professor professor = null;
@@ -59,7 +59,7 @@ public class ProfessorDao {
             return professor;
         }
 
-        // Método para criar um novo professor
+
         public void criarProfessor(Professor professor) {
             String sql = "INSERT INTO professor (nome, status) VALUES (?, ?)";
 
@@ -85,27 +85,25 @@ public class ProfessorDao {
             }
         }
 
-        // Método para atualizar um professor existente
-        public void atualizarProfessor(Professor professor) {
+
+        public void atualizarProfessor(Integer id, Professor novoProfessor) {
             String sql = "UPDATE professor SET nome = ?, status = ? WHERE id = ?";
 
             try (Connection conexao = ConexaoPostgreSQL.obterConexao();
                  PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-                stmt.setString(1, professor.getNome());
-                stmt.setBoolean(2, professor.isStatus());
-                stmt.setInt(3, professor.getId());
-
+                stmt.setString(1, novoProfessor.getNome());
+                stmt.setBoolean(2, novoProfessor.isStatus());
+                stmt.setInt(3, id);
                 stmt.executeUpdate();
-                deletarDisciplinasPorProfessorId(professor.getId());
-                inserirDisciplinas(professor);
+                inserirDisciplinas(novoProfessor);
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
 
-        // Método para deletar um professor pelo ID
+
         public void deletarProfessor(int id) {
             String sql = "DELETE FROM professor WHERE id = ?";
 
@@ -124,7 +122,7 @@ public class ProfessorDao {
 
         private ArrayList<Disciplina> findDisciplinasByProfessorId(int professorId) {
             String sql = "SELECT d.* FROM disciplina d "
-                    + "INNER JOIN professor_disciplina pd ON d.id = pd.disciplina_id "
+                    + "INNER JOIN professordisciplina pd ON d.id = pd.disciplina_id "
                     + "WHERE pd.professor_id = ?";
             ArrayList<Disciplina> disciplinas = new ArrayList<>();
 
@@ -151,7 +149,7 @@ public class ProfessorDao {
         }
 
         private void inserirDisciplinas(Professor professor) throws SQLException {
-            String sql = "INSERT INTO professor_disciplina (professor_id, disciplina_id) VALUES (?, ?)";
+            String sql = "INSERT INTO professordisciplina (professor_id, disciplina_id) VALUES (?, ?)";
 
             try (Connection conexao = ConexaoPostgreSQL.obterConexao();
                  PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -166,7 +164,7 @@ public class ProfessorDao {
             }
         }
 
-        // Método para deletar disciplinas associadas a um professor
+
         private void deletarDisciplinasPorProfessorId(int professorId) throws SQLException {
             String sql = "DELETE FROM professor_disciplina WHERE professor_id = ?";
 

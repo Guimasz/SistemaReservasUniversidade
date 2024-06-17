@@ -25,7 +25,7 @@ public class AlunoService {
         if (aluno == null) {
            throw new RuntimeException("Aluno não encontrado");
         }
-        return alunoDao.findAlunobyMatricula(matricula);
+        return aluno;
     }
 
     public void criarAluno(Aluno aluno) {

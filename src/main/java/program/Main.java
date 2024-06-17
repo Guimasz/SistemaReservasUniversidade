@@ -4,6 +4,9 @@ import config.ConexaoPostgreSQL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
+import Service.DisciplinaService;
+import Dao.DisciplinaDao;
+import model.Disciplina;
 
 public class Main {
     public static void main(String[] args) {
@@ -37,6 +40,8 @@ public class Main {
         switch (op) {
             case 1:
                 //professorService.findAll();
+
+
             case 2:
                 System.out.println("Digite o numero da turma que deseja exibir");
                 int turmaId = sc.nextInt();
@@ -45,41 +50,6 @@ public class Main {
                 //SolicitacaoService solicitar = new solicitacaoService(solicitacaoDao);
                 //solicitar.logicaSolicitacao();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
