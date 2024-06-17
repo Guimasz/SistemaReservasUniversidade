@@ -1,8 +1,6 @@
 package dao;
 
 import config.ConexaoPostgreSQL;
-import model.Aluno;
-import model.Disciplina;
 import model.Professor;
 
 import java.sql.*;
@@ -92,7 +90,7 @@ public class ProfessorDao {
 
     }
 
-    public void deletarProfessor(Integer id) throws SQLException {
+    public void deletarProfessor(int id) throws SQLException {
         String sql = "DELETE FROM professor WHERE id = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
