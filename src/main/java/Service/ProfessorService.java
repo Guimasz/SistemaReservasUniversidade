@@ -1,8 +1,9 @@
-package Service;
+package service;
 
-import Dao.ProfessorDao;
+import dao.ProfessorDao;
 import model.Professor;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ProfessorService {
@@ -28,7 +29,7 @@ public class ProfessorService {
        professorDao.atualizarProfessor(id, novoProfessor);
    }
 
-    public void deletarProfessor(Integer id) {
+    public void deletarProfessor(Integer id) throws SQLException {
          professorDao.deletarProfessor(id);
     }
 
