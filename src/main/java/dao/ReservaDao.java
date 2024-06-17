@@ -1,4 +1,4 @@
-package Dao;
+package dao;
 
 import config.ConexaoPostgreSQL;
 import model.*;

@@ -1,4 +1,4 @@
-package Dao;
+package dao;
 
 import config.ConexaoPostgreSQL;
 import model.Disciplina;
@@ -6,7 +6,6 @@ import model.Turma;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TurmaDao {
 

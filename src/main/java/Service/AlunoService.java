@@ -1,5 +1,5 @@
-package Service;
-import Dao.AlunoDao;
+package service;
+import dao.AlunoDao;
 import model.Aluno;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class AlunoService {
 
     public void criarAluno(Aluno aluno) {
 
-        if ((aluno.getNome() == null) || (aluno.getTurma() == null) || (aluno.getTurma() == null) || (aluno.isStatus() == null)) {
+        if ((aluno.getNome() == null) || (aluno.getTurma() == null) ||  (aluno.isStatus() == null)) {
             throw new RuntimeException("Existem campos obrigatórios não preenchidos");
         }
 
@@ -38,7 +38,7 @@ public class AlunoService {
     }
 
     public void atualizarAluno(Aluno aluno) {
-        if ((aluno.getNome() == null) || (aluno.getTurma() == null) || (aluno.getTurma() == null) || (aluno.isStatus() == null)) {
+        if ((aluno.getNome() == null) || (aluno.getTurma() == null) || (aluno.isStatus() == null)) {
             throw new RuntimeException("Existem campos obrigatórios não preenchidos");
         }
         alunoDao.atualizarAluno(aluno);
