@@ -29,8 +29,7 @@ public class Main {
         switch (op) {
             case 1:
                 //professorService.findAll();
-
-
+        
             case 2:
                 System.out.println("Digite o numero da turma que deseja exibir");
                 int turmaId = sc.nextInt();
