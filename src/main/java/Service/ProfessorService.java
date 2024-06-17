@@ -3,6 +3,8 @@ package Service;
 import Dao.ProfessorDao;
 import model.Professor;
 
+import java.util.ArrayList;
+
 public class ProfessorService {
 
    ProfessorDao professorDao;
@@ -25,5 +27,24 @@ public class ProfessorService {
 
        professorDao.atualizarProfessor(id, novoProfessor);
    }
+
+    public void deletarProfessor(Integer id) {
+         professorDao.deletarProfessor(id);
+    }
+
+    public Professor findProfessorById(Integer id) {
+        Professor professor = professorDao.findProfessorById(id);
+        if (professor == null) {
+            throw new RuntimeException("Professor não encontrado");
+        }
+        return professor;
+    }
+
+    public ArrayList<Professor> findAll() {
+        if (professorDao.findAll() == null) {
+            throw new RuntimeException("Não existem professores cadastrados");
+        }
+        return professorDao.findAll();
+    }
 
 }

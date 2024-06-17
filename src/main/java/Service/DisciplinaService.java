@@ -1,6 +1,6 @@
 package Service;
 
-import Dao.DisciplinaDao;
+import dao.DisciplinaDao;
 import model.Disciplina;
 
 public class DisciplinaService {
@@ -36,11 +36,16 @@ public class DisciplinaService {
 
     }
 
-    public void atualizarDisciplina(Disciplina disciplina) {
-        if ((disciplina.getSigla() == null) || (disciplina.getDescricao() == null) || (disciplina.isStatus() == null)) {
+    public void atualizarDisciplina(Integer id, String sigla, String descricao, Boolean status) {
+        Disciplina novaDisciplina = new Disciplina();
+        novaDisciplina.setSigla(sigla);
+        novaDisciplina.setDescricao(descricao);
+        novaDisciplina.setStatus(status);
+
+        if ((novaDisciplina.getSigla() == null) || (novaDisciplina.getDescricao() == null) || (novaDisciplina.isStatus() == null)) {
             throw new RuntimeException("Existem campos obrigatórios não preenchidos");
         }
-        disciplinaDao.atualizarDisciplina(disciplina);
+        disciplinaDao.atualizarDisciplina(id,novaDisciplina);
     }
 
     public void deletarDisciplina(Integer id) {

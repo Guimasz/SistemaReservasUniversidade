@@ -93,7 +93,7 @@ public class TurmaDao {
     }
 
     // Método para atualizar uma turma existente
-    public void atualizarTurma(Turma turma) {
+    public void atualizarTurma(Integer id ,Turma turma) {
         String sql = "UPDATE turma SET disciplina= ? WHERE id = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -101,7 +101,7 @@ public class TurmaDao {
 
             stmt.setLong(1, turma.getDisciplina().getId());
             stmt.setInt(2, turma.getId());
-
+            stmt.setInt(3, id);
             stmt.executeUpdate();
 
         } catch (SQLException e) {

@@ -100,7 +100,7 @@ public class AlunoDao {
         }
     }
 
-    public void atualizarAluno(Aluno aluno) {
+    public void atualizarAluno(Integer matricula, Aluno aluno) {
         String sql = "UPDATE aluno SET nome = ?, turma = ?, status = ? WHERE matricula = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -110,6 +110,7 @@ public class AlunoDao {
             stmt.setInt(2, aluno.getTurma().getId());
             stmt.setBoolean(3, aluno.isStatus());
             stmt.setInt(4, aluno.getMatricula());
+            stmt.setInt(5, matricula);
 
             stmt.executeUpdate();
 

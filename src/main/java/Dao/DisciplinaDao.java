@@ -73,7 +73,7 @@ public class DisciplinaDao {
         }
     }
 
-    public void atualizarDisciplina(Disciplina disciplina) {
+    public void atualizarDisciplina(Integer id, Disciplina disciplina) {
         String sql = "UPDATE disciplina SET sigla = ?, descricao = ?, status = ? WHERE id = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -82,7 +82,7 @@ public class DisciplinaDao {
             stmt.setString(1, disciplina.getSigla());
             stmt.setString(2, disciplina.getDescricao());
             stmt.setBoolean(3, disciplina.isStatus());
-            stmt.setInt(4, disciplina.getId());
+            stmt.setInt(4, id);
 
             stmt.executeUpdate();
 

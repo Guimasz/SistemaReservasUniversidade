@@ -153,7 +153,7 @@ public class ReservaDao {
     }
 
     // Método para atualizar uma reserva existente
-    public void atualizarReserva(Reserva reserva) {
+    public void atualizarReserva(Integer id, Reserva reserva) {
         String sql = "UPDATE reserva SET laboratorio_id = ?, professor_id = ?, turma_id = ?, data_hora = ?, tempo = ?, aprovada = ? WHERE id = ?";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -165,7 +165,7 @@ public class ReservaDao {
             stmt.setTimestamp(4, Timestamp.valueOf(reserva.getDataHora()));
             stmt.setLong(5, reserva.getTempo().toMinutes());
             stmt.setBoolean(6, reserva.isAprovada());
-            stmt.setInt(7, reserva.getId());
+            stmt.setInt(7, id);
 
             stmt.executeUpdate();
 

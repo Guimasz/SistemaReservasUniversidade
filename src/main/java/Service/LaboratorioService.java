@@ -1,5 +1,5 @@
 package Service;
-import Dao.LaboratorioDao;
+import dao.LaboratorioDao;
 import model.Laboratorio;
 
 import java.util.ArrayList;
@@ -12,23 +12,21 @@ public class LaboratorioService {
         this.laboratorioDao = new LaboratorioDao();
     }
 
-    public Laboratorio findLaboratoriobyId(Integer id) {
-        Laboratorio laboratorio = laboratorioDao.findLaboratorioById(id);
 
-        if (laboratorio == null) {
-            throw new RuntimeException("Laboratório não encontrado");
-        }
-        return laboratorioDao.findLaboratorioById(id);
-    }
+    public void criarLaboratorio(String descricao, Integer capacidade, Boolean status) {
+        Laboratorio novoLaboratorio = new Laboratorio();
+        novoLaboratorio.setDescricao(descricao);
+        novoLaboratorio.setCapacidade(capacidade);
+        novoLaboratorio.setStatus(status);
 
-    public void criarLaboratorio(Laboratorio laboratorio) {
-        if ((laboratorio.getDescricao() == null) || (laboratorio.getCapacidade() == null) || (laboratorio.isStatus() == null)) {
+        if ((novoLaboratorio.getDescricao() == null) || (novoLaboratorio.getCapacidade() == null) || (novoLaboratorio.isStatus() == null)) {
             throw new RuntimeException("Existem campos obrigatórios não preenchidos");
         }
-        laboratorioDao.criarLaboratorio(laboratorio);
+        laboratorioDao.criarLaboratorio(novoLaboratorio);
     }
 
-    public void atualizarLaboratorio(Laboratorio laboratorio) {
+    public void atualizarLaboratorio(Integer id, String descricao, Integer capacidade, Boolean status) {
+        Laboratorio laboratorio = new Laboratorio();
         if ((laboratorio.getDescricao() == null) || (laboratorio.getCapacidade() == null) || (laboratorio.isStatus() == null)) {
             throw new RuntimeException("Existem campos obrigatórios não preenchidos");
         }
@@ -48,5 +46,13 @@ public void deletarLaboratorio(Integer id) {
         return laboratorioDao.findAll();
     }
 
+    public Laboratorio findLaboratorioById(Integer id) {
+        Laboratorio laboratorio = laboratorioDao.findLaboratorioById(id);
+
+        if (laboratorio == null) {
+            throw new RuntimeException("Laboratório não encontrado");
+        }
+        return laboratorio;
+    }
 
 }
