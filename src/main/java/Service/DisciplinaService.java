@@ -26,13 +26,17 @@ public class DisciplinaService {
         return disciplina;
     }
 
-    public void criarDisciplina(Disciplina disciplina) {
+    public void criarDisciplina(String sigla, String descricao, Boolean status) {
+        Disciplina novaDisciplina = new Disciplina();
+        novaDisciplina.setSigla(sigla);
+        novaDisciplina.setDescricao(descricao);
+        novaDisciplina.setStatus(status);
 
-        if ((disciplina.getSigla() == null) || (disciplina.getDescricao() == null) || (disciplina.isStatus() == null)) {
+        if ((novaDisciplina.getSigla() == null) || (novaDisciplina.getDescricao() == null) || (novaDisciplina.isStatus() == null)) {
             throw new RuntimeException("Existem campos obrigatórios não preenchidos");
         }
 
-        disciplinaDao.criarDisciplina(disciplina);
+        disciplinaDao.criarDisciplina(novaDisciplina);
 
     }
 
