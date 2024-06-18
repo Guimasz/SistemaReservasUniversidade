@@ -1,4 +1,4 @@
-package service;
+package Service;
 
 import dao.AlunoDao;
 import model.Aluno;

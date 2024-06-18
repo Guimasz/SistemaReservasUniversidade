@@ -1,4 +1,4 @@
-package service;
+package Service;
 
 import dao.DisciplinaDao;
 import model.Disciplina;

@@ -1,4 +1,4 @@
-package service;
+package Service;
 
 import dao.ProfessorDao;
 import model.Professor;

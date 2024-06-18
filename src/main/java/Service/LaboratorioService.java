@@ -1,4 +1,4 @@
-package service;
+package Service;
 import dao.LaboratorioDao;
 import model.Laboratorio;
 
