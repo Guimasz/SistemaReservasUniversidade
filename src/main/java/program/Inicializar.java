@@ -64,14 +64,14 @@ public class Inicializar {
                     "idProfessor INTEGER NOT NULL," +
                     "idDisciplina INTEGER NOT NULL," +
                     "PRIMARY KEY (idProfessor, idDisciplina)," +
-                    "FOREIGN KEY (idDisciplina) REFERENCES disciplina(id)," +
-                    "FOREIGN KEY (idProfessor) REFERENCES professor(id)" +
+                    "FOREIGN KEY (idDisciplina) REFERENCES disciplina(id) ON DELETE CASCADE," +
+                    "FOREIGN KEY (idProfessor) REFERENCES professor(id) ON DELETE CASCADE " +
                     ");";
 
             String createTurmaTable = "CREATE TABLE IF NOT EXISTS turma (" +
                     "id serial PRIMARY KEY NOT NULL," +
                     "disciplina INTEGER NOT NULL," +
-                    "CONSTRAINT fk_disciplina FOREIGN KEY (disciplina) REFERENCES disciplina(id)" +
+                    "CONSTRAINT fk_disciplina FOREIGN KEY (disciplina) REFERENCES disciplina(id) ON DELETE CASCADE" +
                     ");";
 
             String createLaboratorioTable = "CREATE TABLE IF NOT EXISTS laboratorio (" +
@@ -89,9 +89,9 @@ public class Inicializar {
                     "dataHora timestamp NOT NULL," +
                     "duracao INTEGER," +
                     "aprovada boolean," +
-                    "CONSTRAINT fk_lab FOREIGN KEY (laboratorio) REFERENCES laboratorio(id)," +
-                    "CONSTRAINT fk_prof FOREIGN KEY (professor) REFERENCES professor(id)," +
-                    "CONSTRAINT fk_turma FOREIGN KEY (turma) REFERENCES turma(id)" +
+                    "CONSTRAINT fk_lab FOREIGN KEY (laboratorio) REFERENCES laboratorio(id) ON DELETE CASCADE," +
+                    "CONSTRAINT fk_prof FOREIGN KEY (professor) REFERENCES professor(id) ON DELETE CASCADE," +
+                    "CONSTRAINT fk_turma FOREIGN KEY (turma) REFERENCES turma(id) ON DELETE CASCADE" +
                     ");";
 
             String createAlunoTable = "CREATE TABLE IF NOT EXISTS aluno (" +
@@ -99,7 +99,7 @@ public class Inicializar {
                     "nome varchar(50) NOT NULL," +
                     "status boolean," +
                     "turma INTEGER NOT NULL," +
-                    "CONSTRAINT fk_turma FOREIGN KEY (turma) REFERENCES turma(id)" +
+                    "CONSTRAINT fk_turma FOREIGN KEY (turma) REFERENCES turma(id) ON DELETE CASCADE" +
                     ");";
 
             statement.execute(createDisciplinaTable);
@@ -109,7 +109,37 @@ public class Inicializar {
             statement.execute(createLaboratorioTable);
             statement.execute(createReservaTable);
             statement.execute(createAlunoTable);
+        }catch (SQLException e){
+            e.printStackTrace();
         }
+        System.out.println("Tabelas populadas com sucesso.");
+    }
+
+
+    public void deleteAllTables() {
+        try {
+            DatabaseMetaData metaData = conexao.getMetaData();
+            String[] types = {"TABLE"};
+            java.sql.ResultSet resultSet = metaData.getTables(null, null, "%", types);
+
+            while (resultSet.next()) {
+                String tableName = resultSet.getString(3);
+                dropTable(conexao, tableName);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void dropTable(Connection conexao, String tableName) {
+        String sql = "DROP TABLE IF EXISTS " + tableName + " CASCADE";
+        try (Statement statement = conexao.createStatement()) {
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Tabela " + tableName + " deletada com sucesso.");
     }
 
     public void popular() throws SQLException {
@@ -163,7 +193,7 @@ public class Inicializar {
             reserva1.setLaboratorio(laboratorio1);
             reserva1.setProfessor(professor1);
             reserva1.setTurma(turma1);
-            reservaService.criarReserva(reserva1.getLaboratorio(), reserva1.getProfessor(),  reserva1.getTurma(), reserva1.getDataHora(), reserva1.getTempo(), reserva1.isAprovada());
+            reservaService.criarReserva(reserva1.getLaboratorio(), reserva1.getProfessor(), reserva1.getTurma(), reserva1.getDataHora(), reserva1.getTempo(), reserva1.isAprovada());
             reserva1.setId(reservaService.findReservaById(1).getId());
 
 
@@ -251,6 +281,16 @@ public class Inicializar {
             aluno3.setTurma(turma3);
             alunoService.criarAluno(aluno3.getNome(), aluno3.getTurma(), aluno3.isStatus());
             aluno3.setMatricula(alunoService.findAlunobyMatricula(3).getMatricula());
+        }
+    }
+
+    public void resetar() {
+        try {
+            deleteAllTables();
+            createTables();
+            popular();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

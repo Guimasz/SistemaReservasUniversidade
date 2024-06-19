@@ -8,6 +8,7 @@ import model.Turma;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class ReservaService {
 
@@ -51,6 +52,13 @@ public class ReservaService {
             throw new RuntimeException("Reserva não encontrada");
         }
         return reserva;
+    }
+
+    public ArrayList<Reserva> findAll() {
+        if (reservaDao.findAll() == null) {
+            throw new RuntimeException("Não existem reservas cadastradas");
+        }
+        return reservaDao.findAll();
     }
 
 }
