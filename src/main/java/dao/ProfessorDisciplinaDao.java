@@ -14,7 +14,7 @@ public class ProfessorDisciplinaDao {
 
 
     public void criarProfDis(ProfessorDisciplina professorDisciplina) throws SQLException {
-        String sql = "INSERT INTO professorDisciplina (idProfessor, idDisciplina) VALUES (?, ?)";
+        String sql = "INSERT INTO professordisciplina (idProfessor, idDisciplina) VALUES (?, ?)";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 

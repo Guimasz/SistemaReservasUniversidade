@@ -1,11 +1,10 @@
 package service;
 
+import config.ConexaoPostgreSQL;
 import dao.ReservaDao;
-import model.Laboratorio;
-import model.Professor;
-import model.Reserva;
-import model.Turma;
+import model.*;
 
+import java.sql.*;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -94,6 +93,11 @@ public class ReservaService {
                     return false; // Existe sobreposição de turma
                 }
 
+                // Verificar se o professor está disponível para a disciplina
+                if (!professorPodeDarAula(novaReserva.getProfessor(), novaReserva.getTurma().getDisciplina())) {
+                    return false; // Professor não pode dar aula para essa disciplina
+                }
+
             }
 
 
@@ -101,6 +105,26 @@ public class ReservaService {
 
 
         return true;
+    }
+
+    private boolean professorPodeDarAula(Professor professor, Disciplina disciplina) {
+        String sql = "SELECT 1 FROM professordisciplina WHERE idProfessor = ? AND idDisciplina = ? LIMIT 1";
+        boolean podeDarAula = false;
+
+        try (Connection conexao = ConexaoPostgreSQL.obterConexao();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, professor.getId());
+            stmt.setInt(2, disciplina.getId());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                podeDarAula = rs.next(); // Se houver pelo menos um resultado, o professor pode dar aula para a disciplina
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return podeDarAula;
     }
 
 }

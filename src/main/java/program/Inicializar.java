@@ -21,6 +21,7 @@ public class Inicializar {
     public void start() throws SQLException {
         conectar();
         createTables();
+        popular();
     }
 
     private void conectar() {
@@ -112,7 +113,7 @@ public class Inicializar {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        System.out.println("Tabelas populadas com sucesso.");
+        System.out.println("Tabelas criadas com sucesso.");
     }
 
 
@@ -152,6 +153,7 @@ public class Inicializar {
             ReservaService reservaService = new ReservaService();
             TurmaService turmaService = new TurmaService();
             AlunoService alunoService = new AlunoService();
+            ProfessorDisciplinaService profDisService = new ProfessorDisciplinaService();
 
             // Primeiro conjunto de objetos
             Disciplina disciplina1 = new Disciplina();
@@ -178,6 +180,7 @@ public class Inicializar {
             professor1.setStatus(true);
             professorService.criarProfessor(professor1.getNome(), professor1.isStatus());
             professor1.setId(professorService.findProfessorById(1).getId());
+            profDisService.criarProfDis(1,1);
 
             Laboratorio laboratorio1 = new Laboratorio();
             laboratorio1.setCapacidade(30);
@@ -209,6 +212,8 @@ public class Inicializar {
             professor2.setStatus(true);
             professorService.criarProfessor(professor2.getNome(), professor2.isStatus());
             professor2.setId(professorService.findProfessorById(2).getId());
+            profDisService.criarProfDis(2,2);
+
 
             Laboratorio laboratorio2 = new Laboratorio();
             laboratorio2.setCapacidade(25);
@@ -252,6 +257,7 @@ public class Inicializar {
             professor3.setStatus(true);
             professorService.criarProfessor(professor3.getNome(), professor3.isStatus());
             professor3.setId(professorService.findProfessorById(3).getId());
+            profDisService.criarProfDis(3,3);
 
             Laboratorio laboratorio3 = new Laboratorio();
             laboratorio3.setCapacidade(20);
@@ -284,7 +290,7 @@ public class Inicializar {
         }
     }
 
-    public void resetar() {
+    public void reset() {
         try {
             deleteAllTables();
             createTables();
