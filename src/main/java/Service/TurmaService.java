@@ -1,4 +1,4 @@
-package Service;
+package service;
 import dao.TurmaDao;
 import model.Disciplina;
 import model.Laboratorio;

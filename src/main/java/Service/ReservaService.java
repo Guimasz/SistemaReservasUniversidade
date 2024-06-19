@@ -1,4 +1,4 @@
-package Service;
+package service;
 import dao.ReservaDao;
 import model.Laboratorio;
 import model.Reserva;

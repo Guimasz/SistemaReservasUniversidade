@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import dao.ProfessorDao;
 import model.Professor;
@@ -14,12 +14,17 @@ public class ProfessorService {
        this.professorDao = new ProfessorDao();
    }
 
-   public void criarProfessor(Professor professor) {
-       if ((professor.getNome() == null) || (professor.isStatus() == null)) {
-           throw new RuntimeException("Existem campos obrigatórios não preenchidos");
-       }
-       professorDao.criarProfessor(professor);
-   }
+    public void criarProfessor(String nome, Boolean status) {
+        if (nome == null || status == null) {
+            throw new IllegalArgumentException("Existem campos obrigatórios não preenchidos");
+        }
+
+        Professor novoProfessor = new Professor();
+        novoProfessor.setNome(nome);
+        novoProfessor.setStatus(status);
+
+        professorDao.criarProfessor(novoProfessor);
+    }
 
    public void atualizarProfessor(Integer id, String nome, Boolean status) {
        Professor novoProfessor = new Professor();

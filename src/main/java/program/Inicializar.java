@@ -1,7 +1,7 @@
 package program;
 
 import config.ConexaoPostgreSQL;
-import Service.*;
+import service.*;
 
 import java.sql.*;
 import java.time.Duration;
