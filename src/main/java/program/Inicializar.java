@@ -193,7 +193,7 @@ public class Inicializar {
             reserva1.setLaboratorio(laboratorio1);
             reserva1.setProfessor(professor1);
             reserva1.setTurma(turma1);
-            reservaService.criarReserva(reserva1.getLaboratorio(), reserva1.getProfessor(), reserva1.getTurma(), reserva1.getDataHora(), reserva1.getTempo(), reserva1.isAprovada());
+            reservaService.criarReserva(reserva1.getLaboratorio(), reserva1.getProfessor(), reserva1.getTurma(), reserva1.getDataHora(), reserva1.getTempo());
             reserva1.setId(reservaService.findReservaById(1).getId());
 
 
@@ -229,7 +229,7 @@ public class Inicializar {
             reserva2.setLaboratorio(laboratorio2);
             reserva2.setProfessor(professor2);
             reserva2.setTurma(turma2);
-            reservaService.criarReserva(reserva2.getLaboratorio(), reserva2.getProfessor(), reserva2.getTurma(), reserva2.getDataHora(), reserva2.getTempo(), reserva2.isAprovada());
+            reservaService.criarReserva(reserva2.getLaboratorio(), reserva2.getProfessor(), reserva2.getTurma(), reserva2.getDataHora(), reserva2.getTempo());
             reserva2.setId(reservaService.findReservaById(2).getId());
 
             Aluno aluno2 = new Aluno();
@@ -272,7 +272,7 @@ public class Inicializar {
             reserva3.setLaboratorio(laboratorio3);
             reserva3.setProfessor(professor3);
             reserva3.setTurma(turma3);
-            reservaService.criarReserva(reserva3.getLaboratorio(), reserva3.getProfessor(), reserva3.getTurma(), reserva3.getDataHora(), reserva3.getTempo(), reserva3.isAprovada());
+            reservaService.criarReserva(reserva3.getLaboratorio(), reserva3.getProfessor(), reserva3.getTurma(), reserva3.getDataHora(), reserva3.getTempo());
             reserva3.setId(reservaService.findReservaById(3).getId());
 
             Aluno aluno3 = new Aluno();

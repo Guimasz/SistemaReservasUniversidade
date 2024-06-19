@@ -12,7 +12,7 @@ public class ReservaDao {
     public ReservaDao() {
     }
 
-    // Método para recuperar todas as reservas
+
     public ArrayList<Reserva> findAll() {
         String sql = "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
                 "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
@@ -23,6 +23,24 @@ public class ReservaDao {
                 "INNER JOIN professor p ON r.professor = p.id " +
                 "INNER JOIN turma t ON r.turma = t.id " +
                 "INNER JOIN disciplina d ON t.disciplina = d.id";
+        return executarConsulta(sql);
+    }
+
+    public ArrayList<Reserva> findAllAprovadas() {
+        String sql = "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
+                "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
+                "p.id AS prof_id, p.nome AS prof_nome, p.status AS prof_status, " +
+                "t.id AS turma_id, d.id AS disc_id, d.sigla AS disc_sigla, d.descricao AS disc_desc, d.status AS disc_status " +
+                "FROM reserva r " +
+                "INNER JOIN laboratorio l ON r.laboratorio = l.id " +
+                "INNER JOIN professor p ON r.professor = p.id " +
+                "INNER JOIN turma t ON r.turma = t.id " +
+                "INNER JOIN disciplina d ON t.disciplina = d.id " +
+                "WHERE r.aprovada = true";
+        return executarConsulta(sql);
+    }
+
+    private ArrayList<Reserva> executarConsulta(String sql) {
         ArrayList<Reserva> reservas = new ArrayList<>();
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -68,7 +86,7 @@ public class ReservaDao {
         return reservas;
     }
 
-    // Método para recuperar uma reserva pelo ID
+
     public Reserva findReservaById(int id) {
         String sql = "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
                 "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
@@ -126,7 +144,7 @@ public class ReservaDao {
         return reserva;
     }
 
-    // Método para criar uma nova reserva
+
     public void criarReserva(Reserva reserva) {
         String sql = "INSERT INTO reserva (laboratorio, professor, turma, datahora, duracao, aprovada) VALUES (?, ?, ?, ?, ?, ?)";
 
@@ -155,7 +173,7 @@ public class ReservaDao {
         }
     }
 
-    // Método para atualizar uma reserva existente
+
     public void atualizarReserva(Integer id, Reserva reserva) {
         String sql = "UPDATE reserva SET laboratorio = ?, professor = ?, turma = ?, datahora = ?, duracao = ?, aprovada = ? WHERE id = ?";
 
@@ -177,7 +195,7 @@ public class ReservaDao {
         }
     }
 
-    // Método para deletar uma reserva pelo ID
+
     public void deletarReserva(int id) {
         String sql = "DELETE FROM reserva WHERE id = ?";
 
@@ -192,4 +210,6 @@ public class ReservaDao {
             e.printStackTrace();
         }
     }
+
+
 }
