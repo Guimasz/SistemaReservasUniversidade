@@ -8,8 +8,10 @@ import service.DisciplinaService;
 import dao.DisciplinaDao;
 import model.Disciplina;
 
+
 public class Main {
     public static void main(String[] args) throws SQLException {
+
     Scanner sc = new Scanner(System.in);
         Inicializar inicio = new Inicializar();
         inicio.start();
@@ -28,6 +30,7 @@ public class Main {
         int op = sc.nextInt();
         switch (op) {
             case 1:
+                inicio.popular();
                 //professorService.findAll();
 
             case 2:
@@ -37,6 +40,7 @@ public class Main {
             case 3:
                 //SolicitacaoService solicitar = new solicitacaoService(solicitacaoDao);
                 //solicitar.logicaSolicitacao();
+
         }
 
 

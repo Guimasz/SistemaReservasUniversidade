@@ -112,8 +112,9 @@ public class Inicializar {
         }
     }
 
-    private void popular() throws SQLException {
+    public void popular() throws SQLException {
         try (Statement statement = conexao.createStatement()) {
+
 
             DisciplinaService disciplinaService = new DisciplinaService();
             ProfessorService professorService = new ProfessorService();
@@ -122,128 +123,139 @@ public class Inicializar {
             TurmaService turmaService = new TurmaService();
             AlunoService alunoService = new AlunoService();
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            Aluno aluno1 = new Aluno();
+            // Primeiro conjunto de objetos
             Disciplina disciplina1 = new Disciplina();
-            Laboratorio laboratorio1 = new Laboratorio();
-            Professor professor1 = new Professor();
-            Reserva reserva1 = new Reserva();
-            Turma turma1 = new Turma();
-
             disciplina1.setDescricao("Matemática");
             disciplina1.setSigla("MAT");
             disciplina1.setStatus(true);
+            disciplinaService.criarDisciplina(disciplina1.getSigla(), disciplina1.getDescricao(), disciplina1.isStatus());
+            disciplina1.setId(disciplinaService.findDisciplinabyId(1).getId());
 
+            Turma turma1 = new Turma();
+            turma1.setDisciplina(disciplina1);
+            turmaService.criarTurma(turma1.getDisciplina());
+            turma1.setId(turmaService.findTurmaById(1).getId());
+
+            Aluno aluno1 = new Aluno();
+            aluno1.setNome("João");
+            aluno1.setStatus(true);
+            aluno1.setTurma(turma1);
+            alunoService.criarAluno(aluno1.getNome(), aluno1.getTurma(), aluno1.isStatus());
+            aluno1.setMatricula(alunoService.findAlunobyMatricula(1).getMatricula());
+
+            Professor professor1 = new Professor();
             professor1.setNome("Maria");
             professor1.setStatus(true);
+            professorService.criarProfessor(professor1.getNome(), professor1.isStatus());
+            professor1.setId(professorService.findProfessorById(1).getId());
 
+            Laboratorio laboratorio1 = new Laboratorio();
             laboratorio1.setCapacidade(30);
             laboratorio1.setDescricao("Laboratório de Informática");
             laboratorio1.setStatus(true);
+            laboratorioService.criarLaboratorio(laboratorio1.getDescricao(), laboratorio1.getCapacidade(), laboratorio1.isStatus());
+            laboratorio1.setId(laboratorioService.findLaboratorioById(1).getId());
 
+            Reserva reserva1 = new Reserva();
             reserva1.setAprovada(true);
             reserva1.setDataHora(Timestamp.valueOf("2021-10-10 10:00:00").toLocalDateTime());
             reserva1.setTempo(Duration.ofHours(2));
             reserva1.setLaboratorio(laboratorio1);
             reserva1.setProfessor(professor1);
             reserva1.setTurma(turma1);
-
-            turma1.setDisciplina(disciplina1);
-
-            aluno1.setNome("João");
-            aluno1.setStatus(true);
-            aluno1.setTurma(turma1);
+            reservaService.criarReserva(reserva1.getLaboratorio(), reserva1.getProfessor(),  reserva1.getTurma(), reserva1.getDataHora(), reserva1.getTempo(), reserva1.isAprovada());
+            reserva1.setId(reservaService.findReservaById(1).getId());
 
 
-            disciplinaService.criarDisciplina(disciplina1.getSigla(), disciplina1.getDescricao(), disciplina1.isStatus());
-            professorService.criarProfessor(professor1.getNome(), professor1.isStatus());
-            laboratorioService.criarLaboratorio(laboratorio1.getDescricao(), laboratorio1.getCapacidade(), laboratorio1.isStatus());
-            turmaService.criarTurma(turma1.getDisciplina());
-            reservaService.criarReserva(reserva1.getLaboratorio(), reserva1.getTurma(), reserva1.getDataHora(), reserva1.getTempo(), reserva1.isAprovada());
-            alunoService.criarAluno(aluno1.getNome(), aluno1.getTurma(), aluno1.isStatus());
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            Aluno aluno2 = new Aluno();
             Disciplina disciplina2 = new Disciplina();
-            Laboratorio laboratorio2 = new Laboratorio();
-            Professor professor2 = new Professor();
-            Reserva reserva2 = new Reserva();
-            Turma turma2 = new Turma();
-
             disciplina2.setDescricao("Física");
             disciplina2.setSigla("FIS");
             disciplina2.setStatus(true);
+            disciplinaService.criarDisciplina(disciplina2.getSigla(), disciplina2.getDescricao(), disciplina2.isStatus());
+            disciplina2.setId(disciplinaService.findDisciplinabyId(2).getId());
 
+            Professor professor2 = new Professor();
             professor2.setNome("Carlos");
             professor2.setStatus(true);
+            professorService.criarProfessor(professor2.getNome(), professor2.isStatus());
+            professor2.setId(professorService.findProfessorById(2).getId());
 
+            Laboratorio laboratorio2 = new Laboratorio();
             laboratorio2.setCapacidade(25);
             laboratorio2.setDescricao("Laboratório de Física");
             laboratorio2.setStatus(true);
+            laboratorioService.criarLaboratorio(laboratorio2.getDescricao(), laboratorio2.getCapacidade(), laboratorio2.isStatus());
+            laboratorio2.setId(laboratorioService.findLaboratorioById(2).getId());
 
+            Turma turma2 = new Turma();
+            turma2.setDisciplina(disciplina2);
+            turmaService.criarTurma(turma2.getDisciplina());
+            turma2.setId(turmaService.findTurmaById(2).getId());
+
+            Reserva reserva2 = new Reserva();
             reserva2.setAprovada(false);
             reserva2.setDataHora(Timestamp.valueOf("2021-11-15 14:00:00").toLocalDateTime());
             reserva2.setTempo(Duration.ofHours(3));
             reserva2.setLaboratorio(laboratorio2);
             reserva2.setProfessor(professor2);
             reserva2.setTurma(turma2);
+            reservaService.criarReserva(reserva2.getLaboratorio(), reserva2.getProfessor(), reserva2.getTurma(), reserva2.getDataHora(), reserva2.getTempo(), reserva2.isAprovada());
+            reserva2.setId(reservaService.findReservaById(2).getId());
 
-            turma2.setDisciplina(disciplina2);
-
+            Aluno aluno2 = new Aluno();
             aluno2.setNome("Ana");
             aluno2.setStatus(true);
             aluno2.setTurma(turma2);
-
-            disciplinaService.criarDisciplina(disciplina2.getSigla(), disciplina2.getDescricao(), disciplina2.isStatus());
-            professorService.criarProfessor(professor2.getNome(), professor2.isStatus());
-            laboratorioService.criarLaboratorio(laboratorio2.getDescricao(), laboratorio2.getCapacidade(), laboratorio2.isStatus());
-            turmaService.criarTurma(turma2.getDisciplina());
-            reservaService.criarReserva(reserva2.getLaboratorio(), reserva2.getTurma(), reserva2.getDataHora(), reserva2.getTempo(), reserva2.isAprovada());
             alunoService.criarAluno(aluno2.getNome(), aluno2.getTurma(), aluno2.isStatus());
+            aluno2.setMatricula(alunoService.findAlunobyMatricula(2).getMatricula());
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-            Aluno aluno3 = new Aluno();
+
             Disciplina disciplina3 = new Disciplina();
-            Laboratorio laboratorio3 = new Laboratorio();
-            Professor professor3 = new Professor();
-            Reserva reserva3 = new Reserva();
-            Turma turma3 = new Turma();
-
             disciplina3.setDescricao("Química");
             disciplina3.setSigla("QUI");
             disciplina3.setStatus(true);
+            disciplinaService.criarDisciplina(disciplina3.getSigla(), disciplina3.getDescricao(), disciplina3.isStatus());
+            disciplina3.setId(disciplinaService.findDisciplinabyId(3).getId());
 
+            Professor professor3 = new Professor();
             professor3.setNome("Beatriz");
             professor3.setStatus(true);
+            professorService.criarProfessor(professor3.getNome(), professor3.isStatus());
+            professor3.setId(professorService.findProfessorById(3).getId());
 
+            Laboratorio laboratorio3 = new Laboratorio();
             laboratorio3.setCapacidade(20);
             laboratorio3.setDescricao("Laboratório de Química");
             laboratorio3.setStatus(true);
+            laboratorioService.criarLaboratorio(laboratorio3.getDescricao(), laboratorio3.getCapacidade(), laboratorio3.isStatus());
+            laboratorio3.setId(laboratorioService.findLaboratorioById(3).getId());
 
+            Turma turma3 = new Turma();
+            turma3.setDisciplina(disciplina3);
+            turmaService.criarTurma(turma3.getDisciplina());
+            turma3.setId(turmaService.findTurmaById(3).getId());
+
+            Reserva reserva3 = new Reserva();
             reserva3.setAprovada(true);
             reserva3.setDataHora(Timestamp.valueOf("2021-12-20 09:00:00").toLocalDateTime());
             reserva3.setTempo(Duration.ofHours(1));
             reserva3.setLaboratorio(laboratorio3);
             reserva3.setProfessor(professor3);
             reserva3.setTurma(turma3);
+            reservaService.criarReserva(reserva3.getLaboratorio(), reserva3.getProfessor(), reserva3.getTurma(), reserva3.getDataHora(), reserva3.getTempo(), reserva3.isAprovada());
+            reserva3.setId(reservaService.findReservaById(3).getId());
 
-            turma3.setDisciplina(disciplina3);
-
+            Aluno aluno3 = new Aluno();
             aluno3.setNome("Pedro");
             aluno3.setStatus(true);
             aluno3.setTurma(turma3);
-
-            disciplinaService.criarDisciplina(disciplina3.getSigla(), disciplina3.getDescricao(), disciplina3.isStatus());
-            professorService.criarProfessor(professor3.getNome(), professor3.isStatus());
-            laboratorioService.criarLaboratorio(laboratorio3.getDescricao(), laboratorio3.getCapacidade(), laboratorio3.isStatus());
-            turmaService.criarTurma(turma3.getDisciplina());
-            reservaService.criarReserva(reserva3.getLaboratorio(), reserva3.getTurma(), reserva3.getDataHora(), reserva3.getTempo(), reserva3.isAprovada());
             alunoService.criarAluno(aluno3.getNome(), aluno3.getTurma(), aluno3.isStatus());
-
+            aluno3.setMatricula(alunoService.findAlunobyMatricula(3).getMatricula());
         }
     }
 
 }
+
 
 
 

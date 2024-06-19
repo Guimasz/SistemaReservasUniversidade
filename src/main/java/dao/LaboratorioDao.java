@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class LaboratorioDao {
 
-    // Método para recuperar todos os laboratórios
+
     public ArrayList<Laboratorio> findAll() {
         String sql = "SELECT * FROM laboratorio";
         ArrayList<Laboratorio> laboratorios = new ArrayList<>();
@@ -32,7 +32,7 @@ public class LaboratorioDao {
         return laboratorios;
     }
 
-    // Método para recuperar um laboratório pelo ID
+
     public Laboratorio findLaboratorioById(int id) {
         String sql = "SELECT * FROM laboratorio WHERE id = ?";
         Laboratorio laboratorio = null;
@@ -58,7 +58,7 @@ public class LaboratorioDao {
         return laboratorio;
     }
 
-    // Método para criar um novo laboratório
+
     public void criarLaboratorio(Laboratorio laboratorio) {
         String sql = "INSERT INTO laboratorio (descricao, capacidade, status) VALUES (?, ?, ?)";
 
@@ -76,7 +76,7 @@ public class LaboratorioDao {
         }
     }
 
-    // Método para atualizar um laboratório existente
+
     public void atualizarLaboratorio(Laboratorio laboratorio) {
         String sql = "UPDATE laboratorio SET descricao = ?, capacidade = ?, status = ? WHERE id = ?";
 
@@ -95,7 +95,7 @@ public class LaboratorioDao {
         }
     }
 
-    // Método para deletar um laboratório pelo ID
+
     public void deletarLaboratorio(int id) {
         String sql = "DELETE FROM laboratorio WHERE id = ?";
 

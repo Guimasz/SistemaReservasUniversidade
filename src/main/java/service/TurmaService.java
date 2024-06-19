@@ -37,7 +37,7 @@ public void deletarTurma(Integer id) {
        return turmaDao.findAll();
     }
 
-    public Turma findTurmabyId(Integer id) {
+    public Turma findTurmaById(Integer id) {
         Turma turma = turmaDao.findTurmaById(id);
         if (turma == null) {
             throw new RuntimeException("Turma não encontrada");

@@ -47,10 +47,13 @@ public class AlunoDao {
 
 
     public Aluno findAlunobyMatricula(Integer matricula) {
-        String sql = "SELECT a.matricula, a.nome, a.status, t.id AS turma_id, t.disciplina AS disciplina_id "
-                + " FROM aluno a "
-                + " INNER JOIN turma t ON a.turma = t.id "
-                + " WHERE a.matricula = ?";
+        String sql = "SELECT a.matricula, a.nome, a.status, t.id AS turma_id, "
+                + "d.id AS disciplina_id, d.sigla AS disciplina_sigla, "
+                + "d.descricao AS disciplina_descricao, d.status AS disciplina_status "
+                + "FROM aluno a "
+                + "INNER JOIN turma t ON a.turma = t.id "
+                + "INNER JOIN disciplina d ON t.disciplina = d.id "
+                + "WHERE a.matricula = ?";
         Aluno aluno = null;
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -64,13 +67,16 @@ public class AlunoDao {
                     aluno.setMatricula(rs.getInt("matricula"));
                     aluno.setNome(rs.getString("nome"));
                     aluno.setStatus(rs.getBoolean("status"));
+
                     Turma turma = new Turma();
                     turma.setId(rs.getInt("turma_id"));
+
                     Disciplina disciplina = new Disciplina();
                     disciplina.setId(rs.getInt("disciplina_id"));
                     disciplina.setSigla(rs.getString("disciplina_sigla"));
                     disciplina.setDescricao(rs.getString("disciplina_descricao"));
                     disciplina.setStatus(rs.getBoolean("disciplina_status"));
+
                     turma.setDisciplina(disciplina);
                     aluno.setTurma(turma);
                 }
@@ -82,16 +88,16 @@ public class AlunoDao {
         return aluno;
     }
 
+
     public void criarAluno(Aluno aluno) {
-        String sql = "INSERT INTO aluno (matricula, nome, turma, status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO aluno (nome, turma, status) VALUES (?, ?, ?)";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setInt(1, aluno.getMatricula());
-            stmt.setString(2, aluno.getNome());
-            stmt.setInt(3, aluno.getTurma().getId());
-            stmt.setBoolean(4, aluno.isStatus());
+            stmt.setString(1, aluno.getNome());
+            stmt.setInt(2, aluno.getTurma().getId());
+            stmt.setBoolean(3, aluno.isStatus());
 
             stmt.executeUpdate();
 

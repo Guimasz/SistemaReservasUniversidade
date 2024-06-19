@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 public class ReservaDao {
 
+    public ReservaDao() {
+    }
+
     // Método para recuperar todas as reservas
     public ArrayList<Reserva> findAll() {
         String sql = "SELECT r.id, r.data_hora, r.tempo, r.aprovada, " +
@@ -67,15 +70,15 @@ public class ReservaDao {
 
     // Método para recuperar uma reserva pelo ID
     public Reserva findReservaById(int id) {
-        String sql = "SELECT r.id, r.data_hora, r.tempo, r.aprovada, " +
+        String sql = "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
                 "l.id AS laboratorio_id, l.descricao AS laboratorio_descricao, l.capacidade AS laboratorio_capacidade, l.status AS laboratorio_status, " +
                 "p.id AS professor_id, p.nome AS professor_nome, p.status AS professor_status, " +
                 "t.id AS turma_id, d.id AS disciplina_id, d.sigla AS disciplina_sigla, d.descricao AS disciplina_descricao, d.status AS disciplina_status " +
                 "FROM reserva r " +
-                "INNER JOIN laboratorio l ON r.laboratorio_id = l.id " +
-                "INNER JOIN professor p ON r.professor_id = p.id " +
-                "INNER JOIN turma t ON r.turma_id = t.id " +
-                "INNER JOIN disciplina d ON t.disciplina_id = d.id " +
+                "INNER JOIN laboratorio l ON r.laboratorio = l.id " +
+                "INNER JOIN professor p ON r.professor = p.id " +
+                "INNER JOIN turma t ON r.turma = t.id " +
+                "INNER JOIN disciplina d ON t.disciplina = d.id " +
                 "WHERE r.id = ?";
         Reserva reserva = null;
 
@@ -88,10 +91,9 @@ public class ReservaDao {
                 if (rs.next()) {
                     reserva = new Reserva();
                     reserva.setId(rs.getInt("id"));
-                    reserva.setDataHora(rs.getTimestamp("data_hora").toLocalDateTime());
-                    reserva.setTempo(Duration.ofMinutes(rs.getLong("tempo")));
+                    reserva.setDataHora(rs.getTimestamp("datahora").toLocalDateTime());
+                    reserva.setTempo(Duration.ofMinutes(rs.getLong("duracao")));
                     reserva.setAprovada(rs.getBoolean("aprovada"));
-
                     Laboratorio laboratorio = new Laboratorio();
                     laboratorio.setId(rs.getInt("laboratorio_id"));
                     laboratorio.setDescricao(rs.getString("laboratorio_descricao"));
@@ -125,7 +127,7 @@ public class ReservaDao {
 
     // Método para criar uma nova reserva
     public void criarReserva(Reserva reserva) {
-        String sql = "INSERT INTO reserva (laboratorio_id, professor_id, turma_id, data_hora, tempo, aprovada) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO reserva (laboratorio, professor, turma, datahora, duracao, aprovada) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
