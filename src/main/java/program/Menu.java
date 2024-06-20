@@ -4,6 +4,9 @@ import model.*;
 import service.*;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -240,15 +243,106 @@ public class Menu {
                     case 4:
                         ini();
                         break;
-
                 }
                 ini();
                 break;
 
             case 6:
+                ArrayList<ProfessorDisciplina> profDiscLista = pDS.findAll();
+                for (ProfessorDisciplina pd : profDiscLista) {
+                    System.out.println(pd.toString());
+                }
+
+                System.out.println("Digite 1 para associar professor a disciplina");
+                System.out.println("Digite 2 para desassociar professor de disciplina");
+                System.out.println("Digite 3 para voltar ao menu principal");
+                op = sc.nextInt();
+                switch (op) {
+                    case 1:
+                        System.out.println("Digite o ID do professor que deseja associar a disciplina");
+                        Professor professor = pS.findProfessorById(sc.nextInt());
+                        System.out.println("Digite o id da disciplina que deseja associar");
+                        Disciplina disciplina = dS.findDisciplinabyId(sc.nextInt());
+                        pDS.criarProfDis(professor.getId(), disciplina.getId());
+                        System.out.println("Associação criada com sucesso!");
+                        break;
+                    case 2:
+                        System.out.println("Digite o id do professor que deseja excluir a disciplina");
+                        professor = pS.findProfessorById(sc.nextInt());
+                        System.out.println("Digite o id da disciplina que deseja excluir do professor");
+                        disciplina = dS.findDisciplinabyId(sc.nextInt());
+                        pDS.deletarProfDis(professor.getId(), disciplina.getId());
+                        break;
+                    case 3:
+                        ini();
+                        break;
+                }
+                ini();
+                break;
+            case 7:
+                ArrayList<Reserva> reservasLista = rS.findAll();
+                for (Reserva reserva : reservasLista) {
+                    System.out.println(reserva.toString());
+                }
+
+                System.out.println("Digite 1 para solicitar reserva");
+                System.out.println("Digite 2 para alterar uma reserva");
+                System.out.println("Digite 3 para remover uma reserva");
+                System.out.println("Digite 4 para voltar ao menu principal");
+
+                op = sc.nextInt();
+                switch (op) {
+                    case 1:
+                        System.out.println("Digite o id do laboratório");
+                        Laboratorio laboratorio = lS.findLaboratorioById(sc.nextInt());
+                        System.out.println("Digite o id do professor");
+                        Professor professor = pS.findProfessorById(sc.nextInt());
+                        System.out.println("Digite o id da turma");
+                        Turma turma = tS.findTurmaById(sc.nextInt());
+                        System.out.println("Digite a data e hora da reserva (formato: yyyy-MM-dd HH:mm:ss)");
+                        sc.nextLine();
+                        LocalDateTime dataHora = Timestamp.valueOf(sc.nextLine()).toLocalDateTime();
+                        System.out.println("Digite a duração da reserva em minutos");
+                        int duracao = sc.nextInt();
+
+                        rS.criarReserva(laboratorio, professor, turma, dataHora, Duration.ofMinutes(duracao));
+
+                        System.out.println("Solicitação de reserva criada com sucesso!");
+                        System.out.println("Veja a lista para saber se a reserva foi aprovada ou não");
+
+                        break;
+                    case 2:
+                        System.out.println("Digite o id da reserva que deseja alterar");
+                        int idReserva = sc.nextInt();
+                        System.out.println("Digite o id do laboratório");
+                        laboratorio = lS.findLaboratorioById(sc.nextInt());
+                        System.out.println("Digite o id do professor");
+                        professor = pS.findProfessorById(sc.nextInt());
+                        System.out.println("Digite o id da turma");
+                        turma = tS.findTurmaById(sc.nextInt());
+                        System.out.println("Digite a data e hora da reserva (formato: yyyy-MM-dd HH:mm:ss)");
+                        dataHora = LocalDateTime.parse(sc.nextLine());
+                        System.out.println("Digite a duração da reserva em minutos");
+                        duracao = sc.nextInt();
+                        rS.atualizarReserva(idReserva, laboratorio, turma, dataHora, Duration.ofMinutes(duracao));
+                        System.out.println("Reserva atualizada com sucesso!");
+
+                        break;
+                    case 3:
+                        System.out.println("Digite o id da reserva que deseja excluir");
+                        rS.deletarReserva(sc.nextInt());
+                        break;
+
+                    case 4:
+                        ini();
+                        break;
+
+                }
+                ini();
+                break;
 
 
-                // Se tiver alguma turma com o id especificado,faça um select dos alunos com aquela fk dando join com as disciplinas
+            // Se tiver alguma turma com o id especificado,faça um select dos alunos com aquela fk dando join com as disciplinas
             case 9:
                 System.out.println("Tem certeza que deseja resetar o banco de dados? (s/n)");
                 sc.nextLine();

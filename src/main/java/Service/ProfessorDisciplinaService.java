@@ -2,7 +2,10 @@ package service;
 
 import dao.ProfessorDisciplinaDao;
 import model.ProfessorDisciplina;
+
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProfessorDisciplinaService {
@@ -17,11 +20,11 @@ public class ProfessorDisciplinaService {
         professorDisciplinaDao.criarProfDis(professorDisciplina);
     }
 
-    public List<ProfessorDisciplina> findAll() throws SQLException {
+    public ArrayList<ProfessorDisciplina> findAll() throws SQLException {
         return professorDisciplinaDao.findAll();
     }
 
-    public List<ProfessorDisciplina> findByProfessor(int idProfessor) throws SQLException {
+    public ArrayList<ProfessorDisciplina> findByProfessor(int idProfessor) throws SQLException {
         return professorDisciplinaDao.findByProfessor(idProfessor);
     }
 

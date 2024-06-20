@@ -25,8 +25,8 @@ public class ProfessorDisciplinaDao {
         }
     }
 
-    public List<ProfessorDisciplina> findAll() throws SQLException {
-        List<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
+    public ArrayList<ProfessorDisciplina> findAll() throws SQLException {
+        ArrayList<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
         String sql = "SELECT * FROM professorDisciplina";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              Statement stmt = conexao.createStatement();
@@ -41,8 +41,8 @@ public class ProfessorDisciplinaDao {
         return professorDisciplinas;
     }
 
-    public List<ProfessorDisciplina> findByProfessor(int idProfessor) throws SQLException {
-        List<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
+    public ArrayList<ProfessorDisciplina> findByProfessor(int idProfessor) throws SQLException {
+        ArrayList<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
         String sql = "SELECT * FROM ProfessorDisciplina WHERE idProfessor = ?";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {

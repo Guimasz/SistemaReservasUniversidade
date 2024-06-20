@@ -206,7 +206,7 @@ public class Util {
 
             Reserva reserva1 = new Reserva();
             reserva1.setAprovada(true);
-            reserva1.setDataHora(Timestamp.valueOf("2021-10-10 10:00:00").toLocalDateTime());
+            reserva1.setDataHora(Timestamp.valueOf("2024-10-10 10:00:00").toLocalDateTime());
             reserva1.setTempo(Duration.ofHours(2));
             reserva1.setLaboratorio(laboratorio1);
             reserva1.setProfessor(professor1);
@@ -244,7 +244,7 @@ public class Util {
 
             Reserva reserva2 = new Reserva();
             reserva2.setAprovada(false);
-            reserva2.setDataHora(Timestamp.valueOf("2021-11-15 14:00:00").toLocalDateTime());
+            reserva2.setDataHora(Timestamp.valueOf("2024-11-15 14:00:00").toLocalDateTime());
             reserva2.setTempo(Duration.ofHours(3));
             reserva2.setLaboratorio(laboratorio2);
             reserva2.setProfessor(professor2);
@@ -288,7 +288,7 @@ public class Util {
 
             Reserva reserva3 = new Reserva();
             reserva3.setAprovada(true);
-            reserva3.setDataHora(Timestamp.valueOf("2021-12-20 09:00:00").toLocalDateTime());
+            reserva3.setDataHora(Timestamp.valueOf("2024-12-20 09:00:00").toLocalDateTime());
             reserva3.setTempo(Duration.ofHours(1));
             reserva3.setLaboratorio(laboratorio3);
             reserva3.setProfessor(professor3);
