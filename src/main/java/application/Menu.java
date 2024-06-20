@@ -154,6 +154,7 @@ public class Menu {
                         System.out.println("Digite a sigla da disciplina");
                         sigla = sc.next();
                         System.out.println("Digite a descrição da disciplina");
+                        sc.nextLine();
                         descricao = sc.nextLine();
                         dS.atualizarDisciplina(idDisc, sigla, descricao, true);
                         break;

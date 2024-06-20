@@ -107,9 +107,9 @@ public class ReservaService {
             boolean conflito = novaReservaInicio.isBefore(reservaExistenteFim) && novaReservaFim.isAfter(reservaExistenteInicio);
             if (conflito) {
                 System.out.println("Conflito de horário detectado entre " + novaReservaInicio + " - " + novaReservaFim + " e " + reservaExistenteInicio + " - " + reservaExistenteFim);
-                if ((novaReserva.getLaboratorio().equals(existente.getLaboratorio()) ||
-                        (novaReserva.getProfessor().equals(existente.getProfessor()) ||
-                                (novaReserva.getTurma().equals(existente.getTurma()))))) {
+                if (novaReserva.getLaboratorio().equals(existente.getLaboratorio()) ||
+                        novaReserva.getProfessor().equals(existente.getProfessor()) ||
+                        novaReserva.getTurma().equals(existente.getTurma())) {
                     aprovado = false;
                 }
 
