@@ -20,8 +20,7 @@ public class Inicializar {
 
     public void start() throws SQLException {
         conectar();
-        createTables();
-        popular();
+        reset();
     }
 
     private void conectar() {
@@ -287,6 +286,7 @@ public class Inicializar {
             aluno3.setTurma(turma3);
             alunoService.criarAluno(aluno3.getNome(), aluno3.getTurma(), aluno3.isStatus());
             aluno3.setMatricula(alunoService.findAlunobyMatricula(3).getMatricula());
+            System.out.println("Tabelas populadas com sucesso!");
         }
     }
 

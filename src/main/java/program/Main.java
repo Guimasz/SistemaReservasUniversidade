@@ -15,7 +15,7 @@ public class Main {
     Scanner sc = new Scanner(System.in);
         Inicializar inicio = new Inicializar();
         inicio.start();
-        inicio.popular();
+
 
         System.out.println();
         System.out.println("Olá, bem vindo ao sistema de reservas de laboratório da universidade");
