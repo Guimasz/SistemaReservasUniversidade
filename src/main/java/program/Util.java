@@ -22,7 +22,8 @@ public class Util {
 
     public void start() throws SQLException {
         conectar();
-        reset();
+        createTables();
+
     }
 
     public void reset() {
@@ -56,10 +57,6 @@ public class Util {
         conexao.close();
         System.out.println("Banco Desconectado com sucesso!");
     }
-
-
-
-
 
 
 

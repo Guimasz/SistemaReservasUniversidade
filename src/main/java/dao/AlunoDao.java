@@ -110,8 +110,7 @@ public class AlunoDao {
             stmt.setString(1, aluno.getNome());
             stmt.setInt(2, aluno.getTurma().getId());
             stmt.setBoolean(3, aluno.isStatus());
-            stmt.setInt(4, aluno.getMatricula());
-            stmt.setInt(5, matricula);
+            stmt.setInt(4, matricula);
 
             stmt.executeUpdate();
 

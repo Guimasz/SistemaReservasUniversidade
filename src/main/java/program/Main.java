@@ -9,7 +9,7 @@ public class Main {
 
         Util util = new Util();
         util.start();
-        Menu menu = new Menu();
+        Menu menu = new Menu(util);
         menu.ini();
 
     }
