@@ -143,6 +143,7 @@ public class Menu {
                         System.out.println("Digite a sigla da disciplina");
                         String sigla = sc.next();
                         System.out.println("Digite a descrição da disciplina");
+                        sc.nextLine();
                         String descricao = sc.nextLine();
                         dS.criarDisciplina(sigla, descricao, true);
                         System.out.println("Disciplina criada com sucesso!");
