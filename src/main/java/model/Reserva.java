@@ -82,14 +82,14 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" +
-                "id=" + id +
-                ", laboratorio=" + laboratorio +
-                ", professor=" + professor +
-                ", turma=" + turma +
-                ", dataHora=" + dataHora +
-                ", tempo=" + tempo +
-                ", aprovada=" + aprovada +
-                '}';
+        return "Reserva{ " +
+                "Id= " + id +
+                ", Laboratorio= " + laboratorio.getId() +
+                ", Professor= " + professor.getId() +
+                ", Turma= " + turma.getId() +
+                ", DataHora= " + dataHora +
+                ", Tempo= " + tempo +
+                ", Aprovada= " + aprovada +
+                " }";
     }
 }

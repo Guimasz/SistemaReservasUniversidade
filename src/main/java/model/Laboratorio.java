@@ -51,11 +51,11 @@ public class Laboratorio {
 
     @Override
     public String toString() {
-        return "Laboratorio{" +
-                "id=" + id +
-                ", descricao='" + descricao + '\'' +
-                ", capacidade=" + capacidade +
-                ", status=" + status +
+        return "Laboratorio{ " +
+                "Id= " + id +
+                ", Descricao= '" + descricao + '\'' +
+                ", Capacidade= " + capacidade +
+                ", Status= " + status +
                 '}';
     }
 }

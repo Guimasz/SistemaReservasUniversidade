@@ -12,7 +12,6 @@ public class ReservaDao {
     public ReservaDao() {
     }
 
-
     public ArrayList<Reserva> findAll() {
         String sql = "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
                 "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
@@ -23,6 +22,8 @@ public class ReservaDao {
                 "INNER JOIN professor p ON r.professor = p.id " +
                 "INNER JOIN turma t ON r.turma = t.id " +
                 "INNER JOIN disciplina d ON t.disciplina = d.id";
+
+
         return executarConsulta(sql);
     }
 

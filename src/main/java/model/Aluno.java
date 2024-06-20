@@ -50,11 +50,11 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Aluno{" +
-                "matricula=" + matricula +
-                ", nome='" + nome + '\'' +
-                ", turma=" + turma +
-                ", status=" + status +
-                '}';
+        return "Aluno{ " +
+                "Matricula= " + matricula +
+                ", Nome= '" + nome + '\'' +
+                ", Turma= " + turma.getId() +
+                ", Status= " + status +
+                " }";
     }
 }

@@ -50,11 +50,11 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina{" +
-                "sigla='" + sigla + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", id=" + id +
-                ", status=" + status +
-                '}';
+        return "Disciplina{ " +
+                " Id= " + id +
+                ", Sigla= '" + sigla + '\'' +
+                ", Descricao='" + descricao + '\'' +
+                ", Status=" + status +
+                " }";
     }
 }

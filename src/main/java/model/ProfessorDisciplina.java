@@ -29,9 +29,9 @@ public class ProfessorDisciplina {
 
     @Override
     public String toString() {
-        return "professorDisciplina{" +
-                "idProfessor=" + idProfessor +
-                ", idDisciplina=" + idDisciplina +
-                '}';
+        return "professorDisciplina{ " +
+                " IdProfessor= " + idProfessor +
+                ", IdDisciplina= " + idDisciplina +
+                " }";
     }
 }

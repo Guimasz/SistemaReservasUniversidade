@@ -87,11 +87,13 @@ public class Util {
                 for (Professor p : profLista) {
                     System.out.println(p.toString());
                 }
+                break;
             case 2:
                 ArrayList<Aluno> alnLista = aS.findAll();
                 for (Aluno a : alnLista) {
                     System.out.println(a.toString());
                 }
+                break;
             case 3:
                 ArrayList<Disciplina>  disLista = dS.findAll();
 

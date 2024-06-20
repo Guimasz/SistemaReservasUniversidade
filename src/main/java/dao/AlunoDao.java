@@ -11,9 +11,10 @@ import java.util.ArrayList;
 public class AlunoDao {
 
     public ArrayList<Aluno> findAll() {
-        String sql = "SELECT a.matricula, a.nome, a.status, t.id AS turma_id, t.disciplina AS disciplina_id"
-                + " FROM aluno a "
-                + " INNER JOIN turma t ON a.turma = t.id";
+        String sql = "SELECT a.matricula, a.nome, a.status, t.id AS turma_id "
+                + "FROM aluno a "
+                + "INNER JOIN turma t ON a.turma = t.id "
+                + "INNER JOIN disciplina d ON t.disciplina = d.id ";
         ArrayList<Aluno> alunos = new ArrayList<>();
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
@@ -28,12 +29,6 @@ public class AlunoDao {
                 Turma turma = new Turma();
                 turma.setId(rs.getInt("turma_id"));
 
-                Disciplina disciplina = new Disciplina();
-                disciplina.setId(rs.getInt("disciplina_id"));
-                disciplina.setSigla(rs.getString("disciplina_sigla"));
-                disciplina.setDescricao(rs.getString("disciplina_descricao"));
-                disciplina.setStatus(rs.getBoolean("disciplina_status"));
-                turma.setDisciplina(disciplina);
 
                 aluno.setTurma(turma);
                 alunos.add(aluno);

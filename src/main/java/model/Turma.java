@@ -29,9 +29,9 @@ public class Turma {
 
     @Override
     public String toString() {
-        return "Turma{" +
-                "id=" + id +
-                ", disciplina=" + disciplina +
-                '}';
+        return "Turma{ " +
+                "Id= " + id +
+                ", Disciplina= " + disciplina +
+                " }";
     }
 }
