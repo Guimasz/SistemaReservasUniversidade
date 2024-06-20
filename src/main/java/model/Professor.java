@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Professor {
@@ -48,5 +49,15 @@ public class Professor {
                 " }";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Professor professor)) return false;
+        return Objects.equals(id, professor.id) && Objects.equals(nome, professor.nome) && Objects.equals(status, professor.status);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, status);
+    }
 }

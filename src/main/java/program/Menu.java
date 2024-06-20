@@ -41,7 +41,6 @@ public class Menu {
         System.out.println("Digite 5 para ver turmas");
         System.out.println("Digite 6 para ver as disciplinas dos professores");
         System.out.println("Digite 7 para fazer uma solicitacao de reserva");
-        System.out.println("Digite 8 para ver a lista de reservas");
         System.out.println("Digite 9 para resetar o Banco de Dados");
         System.out.println("Digite 10 para finalizar o programa");
 

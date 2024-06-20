@@ -67,8 +67,9 @@ public class ReservaService {
         return reservaDao.findAllAprovadas();
     }
 
-    public Boolean aprovarReserva(Reserva novaReserva){
+    public Boolean aprovarReserva(Reserva novaReserva) {
         ArrayList<Reserva> lista = reservaDao.findAllAprovadas();
+        boolean aprovado = true;
 
         LocalDateTime novaReservaInicio = novaReserva.getDataHora();
         LocalDateTime novaReservaFim = novaReservaInicio.plus(novaReserva.getTempo());
@@ -79,34 +80,28 @@ public class ReservaService {
 
             // Verificar se o professor está disponível para a disciplina
             if (!professorPodeDarAula(novaReserva.getProfessor(), novaReserva.getTurma().getDisciplina())) {
+                System.out.println("Professor não pode dar aula para essa disciplina");
                 return false; // Professor não pode dar aula para essa disciplina
             }
 
+            // Verificar se há conflito de horário
             boolean conflito = novaReservaInicio.isBefore(reservaExistenteFim) && novaReservaFim.isAfter(reservaExistenteInicio);
             if (conflito) {
+                System.out.println("Conflito de horário detectado entre " + novaReservaInicio + " - " + novaReservaFim + " e " + reservaExistenteInicio + " - " + reservaExistenteFim);
+                if ( (novaReserva.getLaboratorio().equals(existente.getLaboratorio())
+                        || (novaReserva.getProfessor().equals(existente.getProfessor()) ||
+                        (novaReserva.getTurma().equals(existente.getTurma()))))){
 
-                // Verificar se o laboratório é o mesmo
-                if (novaReserva.getLaboratorio().equals(existente.getLaboratorio())) {
-                    return false; // Existe sobreposição de laboratório
-                }
-                // Verificar se o professor é o mesmo
-                if (novaReserva.getProfessor().equals(existente.getProfessor())) {
-                    return false; // Existe sobreposição de professor
-                }
-                // Verificar se a turma é a mesma
-                if (novaReserva.getTurma().equals(existente.getTurma())) {
-                    return false; // Existe sobreposição de turma
+                    aprovado = false;
                 }
 
 
             }
-
-
         }
 
-
-        return true;
+        return aprovado;
     }
+
 
     private boolean professorPodeDarAula(Professor professor, Disciplina disciplina) {
         String sql = "SELECT 1 FROM professordisciplina WHERE idProfessor = ? AND idDisciplina = ? LIMIT 1";

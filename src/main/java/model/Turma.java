@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Turma {
     private Integer id;
     private Disciplina disciplina;
@@ -33,5 +35,17 @@ public class Turma {
                 "Id= " + id +
                 ", Disciplina= " + disciplina +
                 " }";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Turma turma)) return false;
+        return Objects.equals(id, turma.id) && Objects.equals(disciplina, turma.disciplina);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, disciplina);
     }
 }

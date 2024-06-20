@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Laboratorio {
 
     private Integer id;
@@ -57,5 +59,17 @@ public class Laboratorio {
                 ", Capacidade= " + capacidade +
                 ", Status= " + status +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Laboratorio that)) return false;
+        return Objects.equals(id, that.id) && Objects.equals(descricao, that.descricao) && Objects.equals(capacidade, that.capacidade) && Objects.equals(status, that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, descricao, capacidade, status);
     }
 }
