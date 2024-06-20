@@ -71,21 +71,12 @@ public class TurmaDao {
     // Método para criar uma nova turma
     public void criarTurma(Turma turma) {
         String sql = "INSERT INTO turma (disciplina) VALUES (?)";
-
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
-             PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setLong(1, turma.getDisciplina().getId());
 
-            int affectedRows = stmt.executeUpdate();
-
-            if (affectedRows > 0) {
-                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        turma.setId(generatedKeys.getInt(1));
-                    }
-                }
-            }
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

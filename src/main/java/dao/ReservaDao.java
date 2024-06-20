@@ -131,7 +131,7 @@ public class ReservaDao {
         String sql = "INSERT INTO reserva (laboratorio, professor, turma, datahora, duracao, aprovada) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
-             PreparedStatement stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, reserva.getLaboratorio().getId());
             stmt.setInt(2, reserva.getProfessor().getId());
@@ -140,15 +140,7 @@ public class ReservaDao {
             stmt.setLong(5, reserva.getTempo().toMinutes());
             stmt.setBoolean(6, reserva.isAprovada());
 
-            int affectedRows = stmt.executeUpdate();
-
-            if (affectedRows > 0) {
-                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        reserva.setId(generatedKeys.getInt(1));
-                    }
-                }
-            }
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -14,7 +14,7 @@ public class ProfessorDisciplinaDao {
 
 
     public void criarProfDis(ProfessorDisciplina professorDisciplina) throws SQLException {
-        String sql = "INSERT INTO professordisciplina (idProfessor, idDisciplina) VALUES (?, ?)";
+        String sql = "INSERT INTO professorDisciplina (idProfessor, idDisciplina) VALUES (?, ?)";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
@@ -27,7 +27,7 @@ public class ProfessorDisciplinaDao {
 
     public ArrayList<ProfessorDisciplina> findAll() throws SQLException {
         ArrayList<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
-        String sql = "SELECT * FROM professorDisciplina";
+        String sql = "SELECT * FROM professordisciplina";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              Statement stmt = conexao.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -43,7 +43,7 @@ public class ProfessorDisciplinaDao {
 
     public ArrayList<ProfessorDisciplina> findByProfessor(int idProfessor) throws SQLException {
         ArrayList<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
-        String sql = "SELECT * FROM ProfessorDisciplina WHERE idProfessor = ?";
+        String sql = "SELECT * FROM Professordisciplina WHERE idProfessor = ?";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setInt(1, idProfessor);
@@ -59,7 +59,7 @@ public class ProfessorDisciplinaDao {
     }
 
     public void atualizarProfDis(ProfessorDisciplina professorDisciplina) throws SQLException {
-        String sql = "UPDATE ProfessorDisciplina SET idProfessor = ?, idDisciplina = ? WHERE idProfessor = ? AND idDisciplina = ?";
+        String sql = "UPDATE professorDisciplina SET idProfessor = ?, idDisciplina = ? WHERE idProfessor = ? AND idDisciplina = ?";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setInt(1, professorDisciplina.getIdProfessor());
@@ -71,7 +71,7 @@ public class ProfessorDisciplinaDao {
     }
 
     public void deletarProfDis(int idProfessor, int idDisciplina) throws SQLException {
-        String sql = "DELETE FROM ProfessorDisciplina WHERE idProfessor = ? AND idDisciplina = ?";
+        String sql = "DELETE FROM professordisciplina WHERE idProfessor = ? AND idDisciplina = ?";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
             stmt.setInt(1, idProfessor);
