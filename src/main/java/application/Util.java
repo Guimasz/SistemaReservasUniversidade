@@ -1,4 +1,4 @@
-package program;
+package application;
 
 import config.ConexaoPostgreSQL;
 import service.*;
@@ -52,7 +52,7 @@ public class Util {
         }
     }
 
-    private void desconectar() throws SQLException {
+    void desconectar() throws SQLException {
         conexao.close();
         System.out.println("Banco Desconectado com sucesso!");
     }

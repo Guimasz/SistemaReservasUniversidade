@@ -1,4 +1,4 @@
-package program;
+package application;
 
 import model.*;
 import service.*;
@@ -8,7 +8,6 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -354,6 +353,7 @@ public class Menu {
                 break;
             case 9:
                 System.out.println("Obrigado por usar o sistema de reservas de laboratório da universidade");
+                util.desconectar();
                 break;
 
             default:
