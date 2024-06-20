@@ -4,6 +4,7 @@ import model.Aluno;
 import model.Disciplina;
 import model.Professor;
 import model.Turma;
+import org.checkerframework.checker.units.qual.A;
 import service.*;
 
 import java.sql.SQLException;
@@ -146,7 +147,7 @@ public class Menu {
                         System.out.println("Digite a sigla da disciplina");
                         String sigla = sc.next();
                         System.out.println("Digite a descrição da disciplina");
-                        String descricao = sc.next();
+                        String descricao = sc.nextLine();
                         dS.criarDisciplina(sigla, descricao, true);
                         System.out.println("Disciplina criada com sucesso!");
                         break;
@@ -154,9 +155,9 @@ public class Menu {
                         System.out.println("Digite o id da disciplina que deseja atualizar");
                         int idDisc = sc.nextInt();
                         System.out.println("Digite a sigla da disciplina");
-                        sigla = sc.next();
+                        sigla = sc.nextLine();
                         System.out.println("Digite a descrição da disciplina");
-                        descricao = sc.next();
+                        descricao = sc.nextLine();
                         dS.atualizarDisciplina(idDisc, sigla, descricao, true);
                         break;
                     case 3:
@@ -170,15 +171,50 @@ public class Menu {
                 }
                 ini();
                 break;
-            case 4:
 
+            case 4:
+                ArrayList<Turma> tLista = tS.findAll();
+                for (Turma t :tLista){
+                    System.out.println(t.toString());
+                }
+
+                System.out.println("Digite 1 para criar");
+                System.out.println("Digite 2 para alterar");
+                System.out.println("Digite 3 para remover");
+                System.out.println("Digite 4 para voltar ao menu principal");
+
+                int op4 = sc.nextInt();
+                switch (op4){
+                    case 1:
+                        System.out.println("Digite o id da disciplina da turma");
+                        int id2 = sc.nextInt();
+                        Disciplina dis = dS.findDisciplinabyId(id2);
+                        tS.criarTurma(dis);
+                        break;
+                    case 2:
+                        System.out.println("Digite o id da turma que deseja atualizar");
+                        int idTurma = sc.nextInt();
+                        System.out.println("Digite o id da nova disciplina da turma");
+                        int id3 = sc.nextInt();
+                        tS.atualizarTurma(idTurma, dS.findDisciplinabyId(id3));
+                        break;
+                    case 3:
+                        System.out.println("Digite o id da turma que deseja remover");
+                        int idTurma2 = sc.nextInt();
+                        tS.deletarTurma(idTurma2);
+                        break;
+                    case 4:
+                        ini();
+                        break;
+
+                }
+                ini();
+                break;
 
             case 5:
-                //SolicitacaoService solicitar = new solicitacaoService(solicitacaoDao);
-                //solicitar.logicaSolicitacao();
+
 
             case 6:
-
 
                 // Se tiver alguma turma com o id especificado,faça um select dos alunos com aquela fk dando join com as disciplinas
             case 9:
