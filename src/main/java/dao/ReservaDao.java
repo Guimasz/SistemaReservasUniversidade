@@ -14,8 +14,6 @@ public class ReservaDao {
 
     public ArrayList<Reserva> findAll() {
         String sql = "SELECT * FROM vw_reserva_detalhada";
-
-
         return executarConsulta(sql);
     }
 

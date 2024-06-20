@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -41,10 +42,11 @@ public class Menu {
         System.out.println("Digite 5 para ver turmas");
         System.out.println("Digite 6 para ver as disciplinas dos professores");
         System.out.println("Digite 7 para fazer uma solicitacao de reserva");
-        System.out.println("Digite 9 para resetar o Banco de Dados");
-        System.out.println("Digite 10 para finalizar o programa");
+        System.out.println("Digite 8 para resetar o Banco de Dados");
+        System.out.println("Digite 9 para finalizar o programa");
 
         int op = sc.nextInt();
+
         switch (op) {
             case 1:
 
@@ -323,7 +325,7 @@ public class Menu {
                         dataHora = LocalDateTime.parse(sc.nextLine());
                         System.out.println("Digite a duração da reserva em minutos");
                         duracao = sc.nextInt();
-                        rS.atualizarReserva(idReserva, laboratorio, turma, dataHora, Duration.ofMinutes(duracao));
+                        rS.atualizarReserva(idReserva, laboratorio, professor, turma, dataHora, Duration.ofMinutes(duracao));
                         System.out.println("Reserva atualizada com sucesso!");
 
                         break;
@@ -340,9 +342,7 @@ public class Menu {
                 ini();
                 break;
 
-
-            // Se tiver alguma turma com o id especificado,faça um select dos alunos com aquela fk dando join com as disciplinas
-            case 9:
+            case 8:
                 System.out.println("Tem certeza que deseja resetar o banco de dados? (s/n)");
                 sc.nextLine();
                 if (sc.nextLine().equals("s")) {
@@ -351,10 +351,16 @@ public class Menu {
                 } else {
                     ini();
                 }
-
+                break;
+            case 9:
+                System.out.println("Obrigado por usar o sistema de reservas de laboratório da universidade");
                 break;
 
+            default:
+                System.out.println("Opção inválida");
+                ini();
+                break;
         }
-
+            
     }
 }

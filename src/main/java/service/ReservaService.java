@@ -26,18 +26,37 @@ public class ReservaService {
         novaReserva.setTempo(duracao);
         novaReserva.setAprovada(aprovarReserva(novaReserva));
 
+        if (!(novaReserva.isAprovada())) {
+            try{
+                Thread.sleep(2000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
 
+            System.out.println("Reserva não aprovada, voltando para o menu principal...");
+        }
         reservaDao.criarReserva(novaReserva);
     }
 
-    public void atualizarReserva(Integer id, Laboratorio laboratorio, Turma turma, LocalDateTime dataHora, Duration duracao) {
+    public void atualizarReserva(Integer id, Laboratorio laboratorio, Professor professor, Turma turma, LocalDateTime dataHora, Duration duracao) {
         Reserva novaReserva = new Reserva();
         novaReserva.setLaboratorio(laboratorio);
+        novaReserva.setProfessor(professor);
         novaReserva.setTurma(turma);
         novaReserva.setDataHora(dataHora);
         novaReserva.setTempo(duracao);
         novaReserva.setAprovada(aprovarReserva(novaReserva));
         reservaDao.atualizarReserva(id, novaReserva);
+
+        if (!(novaReserva.isAprovada())) {
+            try{
+                Thread.sleep(2000);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+
+            System.out.println("Reserva não aprovada, voltando para o menu principal...");
+        }
 
     }
 
@@ -88,13 +107,11 @@ public class ReservaService {
             boolean conflito = novaReservaInicio.isBefore(reservaExistenteFim) && novaReservaFim.isAfter(reservaExistenteInicio);
             if (conflito) {
                 System.out.println("Conflito de horário detectado entre " + novaReservaInicio + " - " + novaReservaFim + " e " + reservaExistenteInicio + " - " + reservaExistenteFim);
-                if ( (novaReserva.getLaboratorio().equals(existente.getLaboratorio())
-                        || (novaReserva.getProfessor().equals(existente.getProfessor()) ||
-                        (novaReserva.getTurma().equals(existente.getTurma()))))){
-
+                if ((novaReserva.getLaboratorio().equals(existente.getLaboratorio()) ||
+                        (novaReserva.getProfessor().equals(existente.getProfessor()) ||
+                                (novaReserva.getTurma().equals(existente.getTurma()))))) {
                     aprovado = false;
                 }
-
 
             }
         }
