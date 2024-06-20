@@ -77,6 +77,11 @@ public class ReservaService {
             LocalDateTime reservaExistenteInicio = existente.getDataHora();
             LocalDateTime reservaExistenteFim = reservaExistenteInicio.plus(existente.getTempo());
 
+            // Verificar se o professor está disponível para a disciplina
+            if (!professorPodeDarAula(novaReserva.getProfessor(), novaReserva.getTurma().getDisciplina())) {
+                return false; // Professor não pode dar aula para essa disciplina
+            }
+
             boolean conflito = novaReservaInicio.isBefore(reservaExistenteFim) && novaReservaFim.isAfter(reservaExistenteInicio);
             if (conflito) {
 
@@ -93,10 +98,6 @@ public class ReservaService {
                     return false; // Existe sobreposição de turma
                 }
 
-                // Verificar se o professor está disponível para a disciplina
-                if (!professorPodeDarAula(novaReserva.getProfessor(), novaReserva.getTurma().getDisciplina())) {
-                    return false; // Professor não pode dar aula para essa disciplina
-                }
 
             }
 
