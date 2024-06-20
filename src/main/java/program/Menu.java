@@ -1,10 +1,6 @@
 package program;
 
-import model.Aluno;
-import model.Disciplina;
-import model.Professor;
-import model.Turma;
-import org.checkerframework.checker.units.qual.A;
+import model.*;
 import service.*;
 
 import java.sql.SQLException;
@@ -86,7 +82,6 @@ public class Menu {
                 ini();
 
 
-
                 break;
             case 2:
                 ArrayList<Aluno> alnLista = aS.findAll();
@@ -98,11 +93,11 @@ public class Menu {
                 System.out.println("Digite 2 para alterar");
                 System.out.println("Digite 3 para remover");
                 System.out.println("Digite 4 para voltar ao menu principal");
-                int op2 = sc.nextInt();
-                switch (op2) {
+                op = sc.nextInt();
+                switch (op) {
                     case 1:
                         System.out.println("Digite o nome do aluno");
-                        String nome = sc.next();
+                        String nome = sc.nextLine();
                         System.out.println("Digite o id da turma do aluno");
                         Turma turma = tS.findTurmaById(sc.nextInt());
                         aS.criarAluno(nome, turma, true);
@@ -112,7 +107,7 @@ public class Menu {
                         System.out.println("Digite a matricula do aluno que deseja atualizar");
                         int matricula = sc.nextInt();
                         System.out.println("Digite o nome do aluno");
-                        nome = sc.next();
+                        nome = sc.nextLine();
                         System.out.println("Digite o id da turma do aluno");
                         turma = tS.findTurmaById(sc.nextInt());
                         aS.atualizarAluno(matricula, nome, turma, true);
@@ -129,8 +124,6 @@ public class Menu {
                 ini();
 
                 break;
-
-
             case 3:
                 ArrayList<Disciplina> disLista = dS.findAll();
                 for (Disciplina d : disLista) {
@@ -141,8 +134,8 @@ public class Menu {
                 System.out.println("Digite 2 para alterar");
                 System.out.println("Digite 3 para remover");
                 System.out.println("Digite 4 para voltar ao menu principal");
-                int op3 = sc.nextInt();
-                switch (op3) {
+                op = sc.nextInt();
+                switch (op) {
                     case 1:
                         System.out.println("Digite a sigla da disciplina");
                         String sigla = sc.next();
@@ -155,7 +148,7 @@ public class Menu {
                         System.out.println("Digite o id da disciplina que deseja atualizar");
                         int idDisc = sc.nextInt();
                         System.out.println("Digite a sigla da disciplina");
-                        sigla = sc.nextLine();
+                        sigla = sc.next();
                         System.out.println("Digite a descrição da disciplina");
                         descricao = sc.nextLine();
                         dS.atualizarDisciplina(idDisc, sigla, descricao, true);
@@ -171,10 +164,51 @@ public class Menu {
                 }
                 ini();
                 break;
-
             case 4:
+                ArrayList<Laboratorio> labLista = lS.findAll();
+                for (Laboratorio l : labLista) {
+                    System.out.println(l.toString());
+                }
+
+                System.out.println("Digite 1 para criar");
+                System.out.println("Digite 2 para alterar");
+                System.out.println("Digite 3 para remover");
+                System.out.println("Digite 4 para voltar ao menu principal");
+                op = sc.nextInt();
+                switch (op) {
+                    case 1:
+                        System.out.println("Digite a descrição do laboratório");
+                        sc.nextLine();
+                        String descricao = sc.nextLine();
+                        System.out.println("Digite a capacidade do laboratório");
+                        int capacidade = sc.nextInt();
+                        lS.criarLaboratorio(descricao, capacidade, true);
+                        System.out.println("Laboratório criado com sucesso!");
+                        break;
+                    case 2:
+                        System.out.println("Digite o id do laboratório que deseja atualizar");
+                        int idLab = sc.nextInt();
+                        System.out.println("Digite a descrição do laboratório");
+                        descricao = sc.nextLine();
+                        System.out.println("Digite a capacidade do laboratório");
+                        capacidade = sc.nextInt();
+                        lS.atualizarLaboratorio(idLab, descricao, capacidade, true);
+                        break;
+                    case 3:
+                        System.out.println("Digite o id do laboratório que deseja excluir");
+                        idLab = sc.nextInt();
+                        lS.deletarLaboratorio(idLab);
+                        break;
+                    case 4:
+                        ini();
+                        break;
+                }
+                ini();
+                break;
+
+            case 5:
                 ArrayList<Turma> tLista = tS.findAll();
-                for (Turma t :tLista){
+                for (Turma t : tLista) {
                     System.out.println(t.toString());
                 }
 
@@ -183,8 +217,8 @@ public class Menu {
                 System.out.println("Digite 3 para remover");
                 System.out.println("Digite 4 para voltar ao menu principal");
 
-                int op4 = sc.nextInt();
-                switch (op4){
+                op = sc.nextInt();
+                switch (op) {
                     case 1:
                         System.out.println("Digite o id da disciplina da turma");
                         int id2 = sc.nextInt();
@@ -211,19 +245,17 @@ public class Menu {
                 ini();
                 break;
 
-            case 5:
-
-
             case 6:
+
 
                 // Se tiver alguma turma com o id especificado,faça um select dos alunos com aquela fk dando join com as disciplinas
             case 9:
                 System.out.println("Tem certeza que deseja resetar o banco de dados? (s/n)");
                 sc.nextLine();
                 if (sc.nextLine().equals("s")) {
-                util.reset();
+                    util.reset();
                     ini();
-                }else{
+                } else {
                     ini();
                 }
 
