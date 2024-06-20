@@ -6,6 +6,7 @@ import model.Professor;
 import model.Turma;
 import service.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class Menu {
         this.util = util;
     }
 
-    public void ini(){
+    public void ini() throws SQLException {
 
         DisciplinaService dS = new DisciplinaService();
         TurmaService tS = new TurmaService();
@@ -56,7 +57,32 @@ public class Menu {
                 System.out.println("Digite 1 para criar");
                 System.out.println("Digite 2 para alterar");
                 System.out.println("Digite 3 para remover");
+                System.out.println("Digite 4 para voltar ao menu principal");
+                int op1 = sc.nextInt();
+                switch (op1) {
+                    case 1:
+                        System.out.println("Digite o nome do professor");
+                        String nome = sc.next();
+                        pS.criarProfessor(nome, true);
+                        break;
+                    case 2:
+                        System.out.println("Digite o id do professor que deseja atualizar");
+                        int id = sc.nextInt();
+                        System.out.println("Digite o nome do professor");
+                        String nome2 = sc.next();
+                        pS.atualizarProfessor(id, nome2, true);
+                        break;
+                    case 3:
+                        System.out.println("Digite o id do professor que deseja remover");
+                        int id2 = sc.nextInt();
+                        pS.deletarProfessor(id2);
+                        break;
+                    case 4:
+                        ini();
+                        break;
 
+                }
+                ini();
 
 
 
@@ -102,6 +128,8 @@ public class Menu {
                 ini();
 
                 break;
+
+
             case 3:
                 ArrayList<Disciplina> disLista = dS.findAll();
                 for (Disciplina d : disLista) {
