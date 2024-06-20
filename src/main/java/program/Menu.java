@@ -103,10 +103,44 @@ public class Menu {
 
                 break;
             case 3:
-                ArrayList<Disciplina>  disLista = dS.findAll();
+                ArrayList<Disciplina> disLista = dS.findAll();
                 for (Disciplina d : disLista) {
                     System.out.println(d.toString());
                 }
+
+                System.out.println("Digite 1 para criar");
+                System.out.println("Digite 2 para alterar");
+                System.out.println("Digite 3 para remover");
+                System.out.println("Digite 4 para voltar ao menu principal");
+                int op3 = sc.nextInt();
+                switch (op3) {
+                    case 1:
+                        System.out.println("Digite a sigla da disciplina");
+                        String sigla = sc.next();
+                        System.out.println("Digite a descrição da disciplina");
+                        String descricao = sc.next();
+                        dS.criarDisciplina(sigla, descricao, true);
+                        System.out.println("Disciplina criada com sucesso!");
+                        break;
+                    case 2:
+                        System.out.println("Digite o id da disciplina que deseja atualizar");
+                        int idDisc = sc.nextInt();
+                        System.out.println("Digite a sigla da disciplina");
+                        sigla = sc.next();
+                        System.out.println("Digite a descrição da disciplina");
+                        descricao = sc.next();
+                        dS.atualizarDisciplina(idDisc, sigla, descricao, true);
+                        break;
+                    case 3:
+                        System.out.println("Digite o ID da disciplina que deseja excluir");
+                        idDisc = sc.nextInt();
+                        dS.deletarDisciplina(idDisc);
+                        break;
+                    case 4:
+                        ini();
+                        break;
+                }
+                ini();
                 break;
             case 4:
 

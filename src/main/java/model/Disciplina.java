@@ -51,7 +51,7 @@ public class Disciplina {
     @Override
     public String toString() {
         return "Disciplina{ " +
-                " Id= " + id +
+                "Id= " + id +
                 ", Sigla= '" + sigla + '\'' +
                 ", Descricao='" + descricao + '\'' +
                 ", Status=" + status +

@@ -127,7 +127,7 @@ public class Util {
         }catch (SQLException e){
             e.printStackTrace();
         }
-        System.out.println("Tabelas criadas com sucesso.");
+        System.out.println("Tabelas criadas com sucesso!");
     }
 
 
@@ -145,6 +145,7 @@ public class Util {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("Tabelas deletadas com sucesso!");
     }
 
     public void dropTable(Connection conexao, String tableName) {
@@ -154,7 +155,7 @@ public class Util {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Tabela " + tableName + " deletada com sucesso.");
+
     }
 
     public void popular() throws SQLException {
