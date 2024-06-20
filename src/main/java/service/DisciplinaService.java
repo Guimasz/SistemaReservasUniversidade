@@ -3,6 +3,8 @@ package service;
 import dao.DisciplinaDao;
 import model.Disciplina;
 
+import java.util.ArrayList;
+
 public class DisciplinaService {
     DisciplinaDao disciplinaDao;
 
@@ -11,11 +13,12 @@ public class DisciplinaService {
         this.disciplinaDao = new DisciplinaDao();
     }
 
-    public void findAll() {
+    public ArrayList<Disciplina> findAll() {
         if (disciplinaDao.findAll() == null) {
             throw new RuntimeException("Não existem disciplinas cadastradas");
         }
-        disciplinaDao.findAll();
+
+        return disciplinaDao.findAll();
     }
 
     public Disciplina findDisciplinabyId(Integer id) {
