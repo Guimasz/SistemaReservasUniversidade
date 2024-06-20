@@ -7,9 +7,10 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
 
-        Util inicio = new Util();
-        inicio.start();
-        inicio.menu();
+        Util util = new Util();
+        util.start();
+        Menu menu = new Menu();
+        menu.ini();
 
     }
 

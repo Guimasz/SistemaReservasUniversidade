@@ -59,56 +59,7 @@ public class Util {
 
 
 
-    public void menu(){
-        DisciplinaService dS = new DisciplinaService();
-        TurmaService tS = new TurmaService();
-        AlunoService aS = new AlunoService();
-        ProfessorService pS = new ProfessorService();
-        ProfessorDisciplinaService pDS = new ProfessorDisciplinaService();
-        ReservaService rS = new ReservaService();
-        LaboratorioService lS = new LaboratorioService();
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println();
-        System.out.println("Olá, bem vindo ao sistema de reservas de laboratório da universidade");
-        System.out.println();
-        System.out.println("Qual operação deseja realizar?");
-        System.out.println();
-        System.out.println("Digite 1 para verificar a lista de professores");
-        System.out.println("Digite 2 para verificar a lista de alunos");
-        System.out.println("Digite 3 para verificar a lista de disciplinas");
-        System.out.println("Digite 5 para fazer uma solicitacao de reserva");
-        System.out.println();
-        int op = sc.nextInt();
-        switch (op) {
-            case 1:
-
-                ArrayList<Professor> profLista = pS.findAll();
-                for (Professor p : profLista) {
-                    System.out.println(p.toString());
-                }
-                break;
-            case 2:
-                ArrayList<Aluno> alnLista = aS.findAll();
-                for (Aluno a : alnLista) {
-                    System.out.println(a.toString());
-                }
-                break;
-            case 3:
-                ArrayList<Disciplina>  disLista = dS.findAll();
-
-
-            case 5:
-                //SolicitacaoService solicitar = new solicitacaoService(solicitacaoDao);
-                //solicitar.logicaSolicitacao();
-
-            case 6:
-
-
-                // Se tiver alguma turma com o id especificado,faça um select dos alunos com aquela fk dando join com as disciplinas
-
-        }
-    }
 
 
 
