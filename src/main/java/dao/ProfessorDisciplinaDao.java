@@ -27,7 +27,7 @@ public class ProfessorDisciplinaDao {
 
     public List<ProfessorDisciplina> findAll() throws SQLException {
         List<ProfessorDisciplina> professorDisciplinas = new ArrayList<>();
-        String sql = "SELECT * FROM professorDisciplina";
+        String sql = "SELECT * FROM vw_professor_disciplina ";
         try (Connection conexao = ConexaoPostgreSQL.obterConexao();
              Statement stmt = conexao.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

@@ -5,8 +5,6 @@ import service.*;
 
 import java.sql.*;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import model.*;
 
@@ -30,6 +28,7 @@ public class Util {
         try {
             deleteAllTables();
             createTables();
+            createViews();
             popular();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,7 +60,7 @@ public class Util {
 
 
     private void createTables() throws SQLException {
-        try (Statement statement = conexao.createStatement()) {
+        try (Statement stmt = conexao.createStatement()) {
             String createDisciplinaTable = "CREATE TABLE IF NOT EXISTS disciplina(" +
                     "id serial PRIMARY KEY NOT NULL," +
                     "sigla varchar(50) NOT NULL," +
@@ -117,21 +116,65 @@ public class Util {
                     "CONSTRAINT fk_turma FOREIGN KEY (turma) REFERENCES turma(id) ON DELETE CASCADE" +
                     ");";
 
-            statement.execute(createDisciplinaTable);
-            statement.execute(createProfessorTable);
-            statement.execute(createProfessorDisciplinaTable);
-            statement.execute(createTurmaTable);
-            statement.execute(createLaboratorioTable);
-            statement.execute(createReservaTable);
-            statement.execute(createAlunoTable);
+            stmt.execute(createDisciplinaTable);
+            stmt.execute(createProfessorTable);
+            stmt.execute(createProfessorDisciplinaTable);
+            stmt.execute(createTurmaTable);
+            stmt.execute(createLaboratorioTable);
+            stmt.execute(createReservaTable);
+            stmt.execute(createAlunoTable);
         }catch (SQLException e){
             e.printStackTrace();
         }
         System.out.println("Tabelas criadas com sucesso!");
     }
 
+    public void createViews() {
+        try (Statement stmt = conexao.createStatement()) {
 
-    public void deleteAllTables() {
+            String createViewReservaDetalhada = "CREATE VIEW vw_reserva_detalhada AS " +
+                    "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
+                    "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
+                    "p.id AS prof_id, p.nome AS prof_nome, p.status AS prof_status, " +
+                    "t.id AS turma_id, d.id AS disc_id, d.sigla AS disc_sigla, d.descricao AS disc_desc, d.status AS disc_status " +
+                    "FROM reserva r " +
+                    "INNER JOIN laboratorio l ON r.laboratorio = l.id " +
+                    "INNER JOIN professor p ON r.professor = p.id " +
+                    "INNER JOIN turma t ON r.turma = t.id " +
+                    "INNER JOIN disciplina d ON t.disciplina = d.id";
+
+
+            String createViewReservaAprovadas = "CREATE VIEW vw_reserva_aprovadas AS " +
+                    "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
+                    "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
+                    "p.id AS prof_id, p.nome AS prof_nome, p.status AS prof_status, " +
+                    "t.id AS turma_id, d.id AS disc_id, d.sigla AS disc_sigla, d.descricao AS disc_desc, d.status AS disc_status " +
+                    "FROM reserva r " +
+                    "INNER JOIN laboratorio l ON r.laboratorio = l.id " +
+                    "INNER JOIN professor p ON r.professor = p.id " +
+                    "INNER JOIN turma t ON r.turma = t.id " +
+                    "INNER JOIN disciplina d ON t.disciplina = d.id " +
+                    "WHERE r.aprovada = true";
+
+
+            String createViewProfessorDisciplina = "CREATE VIEW vw_professor_disciplina AS " +
+                    "SELECT p.nome AS nome_professor, d.id AS idDisciplina, d.sigla AS sigla_disciplina, d.descricao AS nome_disciplina " +
+                    "FROM professorDisciplina pd " +
+                    "INNER JOIN professor p ON pd.idProfessor = p.id " +
+                    "INNER JOIN disciplina d ON pd.idDisciplina = d.id";
+
+            stmt.execute(createViewReservaDetalhada);
+            stmt.execute(createViewReservaAprovadas);
+            stmt.execute(createViewProfessorDisciplina);
+
+            System.out.println("Views criadas com sucesso.");
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        public void deleteAllTables() {
         try {
             DatabaseMetaData metaData = conexao.getMetaData();
             String[] types = {"TABLE"};

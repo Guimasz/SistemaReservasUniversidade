@@ -13,31 +13,14 @@ public class ReservaDao {
     }
 
     public ArrayList<Reserva> findAll() {
-        String sql = "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
-                "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
-                "p.id AS prof_id, p.nome AS prof_nome, p.status AS prof_status, " +
-                "t.id AS turma_id, d.id AS disc_id, d.sigla AS disc_sigla, d.descricao AS disc_desc, d.status AS disc_status " +
-                "FROM reserva r " +
-                "INNER JOIN laboratorio l ON r.laboratorio = l.id " +
-                "INNER JOIN professor p ON r.professor = p.id " +
-                "INNER JOIN turma t ON r.turma = t.id " +
-                "INNER JOIN disciplina d ON t.disciplina = d.id";
+        String sql = "SELECT * FROM vw_reserva_detalhada";
 
 
         return executarConsulta(sql);
     }
 
     public ArrayList<Reserva> findAllAprovadas() {
-        String sql = "SELECT r.id, r.datahora, r.duracao, r.aprovada, " +
-                "l.id AS lab_id, l.descricao AS lab_desc, l.capacidade AS lab_cap, l.status AS lab_status, " +
-                "p.id AS prof_id, p.nome AS prof_nome, p.status AS prof_status, " +
-                "t.id AS turma_id, d.id AS disc_id, d.sigla AS disc_sigla, d.descricao AS disc_desc, d.status AS disc_status " +
-                "FROM reserva r " +
-                "INNER JOIN laboratorio l ON r.laboratorio = l.id " +
-                "INNER JOIN professor p ON r.professor = p.id " +
-                "INNER JOIN turma t ON r.turma = t.id " +
-                "INNER JOIN disciplina d ON t.disciplina = d.id " +
-                "WHERE r.aprovada = true";
+        String sql = "SELECT * FROM vw_reserva_aprovadas";
         return executarConsulta(sql);
     }
 
